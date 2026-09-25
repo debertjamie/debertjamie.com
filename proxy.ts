@@ -25,6 +25,8 @@ export function proxy(request: NextRequest) {
     if (
       pathname.startsWith("/_next") ||
       pathname.startsWith("/api") ||
+      pathname.startsWith("/studio") ||
+      pathname.startsWith("/l") ||
       PUBLIC_FILE.test(pathname)
     ) {
       return NextResponse.next();
@@ -41,6 +43,6 @@ export function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|assets|monitoring|robots.txt|sitemap.xml).*)",
+    "/((?!api|studio|l|_next/static|_next/image|favicon.ico|assets|monitoring|robots.txt|sitemap.xml).*)",
   ],
 };
