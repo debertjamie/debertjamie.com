@@ -1,7 +1,11 @@
 import { drizzle } from "drizzle-orm/neon-http";
 import { neon } from "@neondatabase/serverless";
 import { migrate } from "drizzle-orm/neon-http/migrator";
-import { dbUrl } from "../env";
+import { config } from "dotenv";
+
+config({ path: ".env" });
+
+const dbUrl = process.env.DB_URL;
 
 const database = drizzle({ client: neon(dbUrl!) });
 
