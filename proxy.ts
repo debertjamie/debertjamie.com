@@ -1,10 +1,11 @@
+import { clerkMiddleware } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 const supportedLanguages = ["en", "zh-CN"];
 const PUBLIC_FILE = /\.(.*)$/;
 
-export function proxy(request: NextRequest) {
+function languageProxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   const cookieLang = request.cookies.get("selectedLanguage")?.value;
@@ -40,6 +41,8 @@ export function proxy(request: NextRequest) {
   response.headers.set("x-pathname", request.nextUrl.pathname);
   return response;
 }
+
+export default clerkMiddleware((_, request) => languageProxy(request));
 
 export const config = {
   matcher: [
