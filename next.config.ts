@@ -4,7 +4,6 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ["127.0.0.1"],
   images: {
     qualities: [100, 75],
-    dangerouslyAllowLocalIP: true,
     remotePatterns: [
       { protocol: "https", hostname: "cdn.debertjamie.com", pathname: "/**", },
       { protocol: "https", hostname: "cdn.sanity.io", pathname: "/**", },
