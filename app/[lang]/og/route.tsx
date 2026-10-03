@@ -6,7 +6,7 @@ initServerI18next(i18nConfig);
 
 export async function GET(
   request: Request,
-  { params }: { params: Promise<{ lang: "en" | "zh-CN" }> },
+  { params }: { params: Promise<{ lang: string }> },
 ) {
   try {
     const { lang } = await params;
