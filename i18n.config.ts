@@ -10,6 +10,7 @@ const i18nConfig: I18nConfig = {
     "blog",
     "contact",
     "friends",
+    "gallery",
     "guestbook",
     "home",
     "layout",
