@@ -11,6 +11,7 @@ export function Gallery() {
           initialX={-150}
           initialY={15}
           baseZIndex={20}
+          scale
         />
         <StackImage
           src="/images/debert_2.jpg"
@@ -20,6 +21,7 @@ export function Gallery() {
           initialY={15}
           baseZIndex={10}
           loading="eager"
+          scale
         />
         <StackImage
           src="/images/debert_3.jpg"
@@ -28,6 +30,7 @@ export function Gallery() {
           initialX={0}
           initialY={-10}
           baseZIndex={20}
+          scale
         />
       </div>
       <div className="flex sm:hidden relative w-full mx-auto max-w-3xl h-56 items-center justify-center">
