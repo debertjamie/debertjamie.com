@@ -4,17 +4,18 @@ import i18nConfig from "../../../i18n.config";
 
 initServerI18next(i18nConfig);
 
-export async function GET(request: Request, { params }: PageProps<"/[lang]">) {
+export async function GET(
+  request: Request,
+  { params }: { params: Promise<{ lang: "en" | "zh-CN" }> },
+) {
   try {
     const { lang } = await params;
     const { t } = await getT("layout", { lng: lang });
 
     const { searchParams } = new URL(request.url);
-    const displayTitle =
-      searchParams.get("title") || t("metadata.title");
+    const displayTitle = searchParams.get("title") || t("metadata.title");
     const description =
-      searchParams.get("description") ||
-      t("metadata.description");
+      searchParams.get("description") || t("metadata.description");
     const avatarUrl = new URL("/avatar.png", request.url).toString();
 
     return new ImageResponse(
