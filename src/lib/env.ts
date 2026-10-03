@@ -18,3 +18,9 @@ export const mode = process.env.NODE_ENV;
 export const wechatUrl = process.env.NEXT_PUBLIC_WECHAT_URL;
 
 export const IQAirKey = process.env.IQAIR_API_KEY;
+
+export const R2AccountId = process.env.R2_ACCOUNT_ID;
+export const R2AccessKeyId = process.env.R2_ACCESS_KEY_ID;
+export const R2SecretAccessKey = process.env.R2_SECRET_ACCESS_KEY;
+export const R2BucketName = process.env.R2_BUCKET_NAME;
+export const R2PublicUrl = process.env.NEXT_PUBLIC_R2_PUBLIC_URL;
