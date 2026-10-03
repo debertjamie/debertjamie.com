@@ -1,9 +1,9 @@
 "use client";
-import { useDictionary } from "@/src/components/DictionaryProvider";
-import { wechatUrl } from "@/src/lib/env";
+import { useT } from "next-i18next/client";
 import { DesignQR } from "designqr";
 import { Scan, TreeDeciduous } from "lucide-react";
 import { useState, useSyncExternalStore } from "react";
+import { wechatUrl } from "@/src/lib/env";
 import usePrefersReducedMotion from "@/src/hooks/useReducedMotion";
 
 function getLowPerformanceDevice() {
@@ -23,7 +23,7 @@ function getLowPerformanceDevice() {
 const subscribeToPerformanceChanges = () => () => {};
 
 export default function WeChat() {
-  const dict = useDictionary();
+  const { t } = useT("wechat");
   const prefersReducedMotion = usePrefersReducedMotion();
   const isLowPerformanceDevice = useSyncExternalStore(
     subscribeToPerformanceChanges,
@@ -37,8 +37,8 @@ export default function WeChat() {
   return (
     <main className="flex flex-col">
       <section className="px-8 py-4 sm:pt-20 flex flex-col gap-y-2 border-b border-mist-300">
-        <h1 className="text-5xl">{dict.wechat.header.title}</h1>
-        <p>{dict.wechat.header.description}</p>
+        <h1 className="text-5xl">{t("header.title")}</h1>
+        <p>{t("header.description")}</p>
       </section>
       <section className="flex justify-center items-center pt-4 pb-16 relative">
         <div className="h-[70vh] w-[70vh]">
@@ -63,7 +63,7 @@ export default function WeChat() {
         {!showOnlyQr && (
           <div className="absolute bottom-4 px-2 py-1 flex items-center gap-x-2 rounded-lg bg-pink-100 border-2 border-pink-200">
             {current === "tree" ? <TreeDeciduous className="w-4 h-4" /> : <Scan className="w-4 h-4" />}
-            <p>{dict.wechat.instructions[current]}</p>
+            <p>{t(`instructions.${current}`)}</p>
           </div>
         )}
       </section>

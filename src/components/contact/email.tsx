@@ -1,7 +1,6 @@
 "use client";
-
+import { useT } from "next-i18next/client";
 import { useEffect, useReducer, useRef } from "react";
-import { useDictionary } from "../DictionaryProvider";
 import { ExtendedLink as Link } from "../commons/extendlink";
 import usePrefersReducedMotion from "@/src/hooks/useReducedMotion";
 
@@ -94,7 +93,7 @@ function animationReducer(
 }
 
 export function Email() {
-  const dict = useDictionary();
+  const { t } = useT("contact");
   const reduced = usePrefersReducedMotion();
 
   const [state, dispatch] = useReducer(animationReducer, {
@@ -144,7 +143,7 @@ export function Email() {
           @debertjamie.com
         </span>
       </Link>
-      <p className="pt-4">{dict.contact.email}</p>
+      <p className="pt-4">{t("email")}</p>
     </div>
   );
 }

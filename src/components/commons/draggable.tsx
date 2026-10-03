@@ -1,6 +1,12 @@
 "use client";
 
-import { useRef, useState, type PointerEvent, type ReactNode } from "react";
+import {
+  useRef,
+  useState,
+  type CSSProperties,
+  type PointerEvent,
+  type ReactNode,
+} from "react";
 
 type DraggableProps = {
   children: ReactNode;
@@ -9,6 +15,7 @@ type DraggableProps = {
   initialY?: number;
   baseZIndex?: number;
   className?: string;
+  style?: CSSProperties;
 };
 
 export function Draggable({
@@ -18,6 +25,7 @@ export function Draggable({
   initialY = 0,
   baseZIndex = 1,
   className = "",
+  style,
 }: DraggableProps) {
   const [dragDelta, setDragDelta] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
@@ -54,6 +62,7 @@ export function Draggable({
       onPointerCancel={handlePointerUp}
       className={`touch-none select-none cursor-grab active:cursor-grabbing ${isDragging ? "z-50" : ""} ${className}`}
       style={{
+        ...style,
         zIndex: isDragging ? 50 : baseZIndex,
         transform: `translate(${initialX + dragDelta.x}px, ${initialY + dragDelta.y}px) rotate(${initialRotation}deg)`,
       }}

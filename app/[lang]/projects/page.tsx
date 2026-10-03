@@ -1,11 +1,11 @@
+import { getT } from "next-i18next/server";
 import Image from "next/image";
-import { getDictionary } from "../dictionaries";
 import { Bento } from "@/src/components/projects/bento";
 import { Reveal, RevealSection } from "@/src/components/commons/reveal";
 
 export default async function Now({ params }: PageProps<"/[lang]/projects">) {
   const { lang } = await params;
-  const dict = await getDictionary(lang as "en" | "zh-CN");
+  const { t } = await getT("projects", { lng: lang });
 
   return (
     <main className="flex flex-col">
@@ -21,12 +21,12 @@ export default async function Now({ params }: PageProps<"/[lang]/projects">) {
           />
         </div>
         <Reveal className="mt-auto z-50 px-8 pb-12 pt-4 not-md:pt-72">
-          <h1 className="text-5xl">{dict.projects.header.title}</h1>
-          <p>{dict.projects.header.description}</p>
+          <h1 className="text-5xl">{t("hero.title")}</h1>
+          <p>{t("hero.description")}</p>
         </Reveal>
       </section>
       <RevealSection className="flex flex-col gap-y-4 px-8 py-4 border-t border-mist-300">
-        <Bento dict={dict} />
+        <Bento t={t} />
       </RevealSection>
     </main>
   );

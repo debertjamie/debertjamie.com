@@ -1,20 +1,20 @@
 "use client";
+import { useT } from "next-i18next/client";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { type JSX, useEffect, useRef, useState } from "react";
 import { HoverLink } from "../commons/hoverlink";
-import { useDictionary } from "../DictionaryProvider";
 
 type NavbarProps = {
   links: { icon: JSX.Element; href: string; label: string }[];
 };
 
 export function MobileNav({ links }: NavbarProps) {
+  const { t } = useT("nav");
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const menuRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
   const [prevPath, setPrevPath] = useState<string>(pathname);
-  const dict = useDictionary();
 
   if (pathname !== prevPath) {
     setPrevPath(pathname);
@@ -63,7 +63,7 @@ export function MobileNav({ links }: NavbarProps) {
               >
                 {link.icon}
                 <span className="font-medium">
-                  {dict.nav[link.label as keyof typeof dict.nav]}
+                  {t(link.label)}
                 </span>
               </HoverLink>
             </li>

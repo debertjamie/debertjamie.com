@@ -1,10 +1,10 @@
+import { getT } from "next-i18next/server";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import type { ComponentProps } from "react";
 import { nowQuery } from "@/src/lib/sanity/lib/query";
 import { sanityFetch } from "@/src/lib/sanity/lib/client";
 import { PortableTextRenderer } from "@/src/components/sanity/portableText";
-import { getDictionary } from "../dictionaries";
 import { Reveal, RevealSection } from "@/src/components/commons/reveal";
 
 type NowData = {
@@ -22,7 +22,7 @@ function formatDate(date: string, locale: string = "en-GB") {
 
 export default async function Now({ params }: PageProps<"/[lang]/now">) {
   const { lang } = await params;
-  const dict = await getDictionary(lang as "en" | "zh-CN");
+  const { t } = await getT("now", { lng: lang });
   const nowData: NowData = await sanityFetch({
     query: nowQuery,
     tags: ["now"],
@@ -42,19 +42,16 @@ export default async function Now({ params }: PageProps<"/[lang]/now">) {
           />
         </div>
         <Reveal className="mt-auto z-50 px-8 pb-12 pt-4 not-md:pt-72">
-          <h1 className="text-5xl">{dict.now.header.title}</h1>
-          <p>{dict.now.header.description}</p>
+          <h1 className="text-5xl">{t("hero.title")}</h1>
+          <p>{t("hero.description")}</p>
         </Reveal>
       </section>
       <RevealSection className="flex flex-col gap-y-4 px-8 py-4 border-t border-mist-300">
         <div>
           <PortableTextRenderer value={nowData.content} />
         </div>
-        <p className="text-base text-steel-grey/80 dark:text-porcelain/80">
-          {dict.now.lastUpdated}:{" "}
-          <span className="font-semibold">
-            {formatDate(nowData._updatedAt, lang)}
-          </span>
+        <p className="text-base font-semibold text-steel-grey/80 dark:text-porcelain/80">
+          {t("lastUpdated", { date: formatDate(nowData._updatedAt, lang) })}
         </p>
       </RevealSection>
     </main>

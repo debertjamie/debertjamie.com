@@ -1,19 +1,22 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useDictionary } from "@/src/components/DictionaryProvider";
+import { useT } from "next-i18next/client";
 
 export default function Loading() {
-  const dict = useDictionary();
+  const { t } = useT("layout");
+  const messages = t("loading", {
+    returnObjects: true,
+  }) as unknown as string[];
   const [messageIndex, setMessageIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setMessageIndex((prevIndex) => (prevIndex + 1) % dict.loading.length);
-    }, 2000);
+      setMessageIndex((prevIndex) => (prevIndex + 1) % messages.length);
+    }, 3000);
     return () => clearInterval(interval);
-  }, [dict.loading.length]);
+  }, [messages.length]);
 
-  const currentMessage = dict.loading[messageIndex] || "Loading...";
+  const currentMessage = messages[messageIndex] ?? "Loading...";
 
   return (
     <main className="flex flex-col flex-1 w-full justify-center items-center">

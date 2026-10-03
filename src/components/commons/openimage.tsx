@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image, { type ImageProps } from "next/image";
 
 type OpenImageProps = ImageProps & {
@@ -15,6 +15,20 @@ export function OpenImage({
   ...props
 }: OpenImageProps) {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow = previousHtmlOverflow;
+    };
+  }, [open]);
 
   return (
     <>
@@ -43,6 +57,8 @@ export function OpenImage({
             <Image
               {...props}
               alt={alt}
+              quality={100}
+              unoptimized
               className="h-auto w-auto max-h-[80vh] max-w-[90vw] object-contain"
             />
 
@@ -72,6 +88,20 @@ export function OpenTextImage({
 }: OpenTextImageProps) {
   const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    if (!open) return;
+
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow = previousHtmlOverflow;
+    };
+  }, [open]);
+
   return (
     <>
       <span onClick={() => setOpen(true)} className="cursor-pointer">
@@ -90,6 +120,8 @@ export function OpenTextImage({
             <Image
               {...props}
               alt={alt}
+              quality={100}
+              unoptimized
               className="h-auto w-auto max-h-[80vh] max-w-[90vw] object-contain"
               style={style}
             />

@@ -1,17 +1,16 @@
+import { type TFunction } from "i18next";
 import Image from "next/image";
 import { projectsQuery } from "@/src/lib/sanity/lib/query";
 import { sanityFetch } from "@/src/lib/sanity/lib/client";
 import type { ProjectType } from "@/src/lib/blog";
 import { ExtendedLink as Link } from "../commons/extendlink";
 import { PortableTextRenderer } from "../sanity/portableText";
-import { getDictionary } from "@/app/[lang]/dictionaries";
 
-export async function Bento({ dict }: { dict: Awaited<ReturnType<typeof getDictionary>>}) {
+export async function Bento({ t }: { t: TFunction<"projects", undefined>}) {
   const data: ProjectType[] = await sanityFetch({
     query: projectsQuery,
     tags: ["projects"],
   });
-
   const projects = data.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
 
   return (
@@ -60,7 +59,7 @@ export async function Bento({ dict }: { dict: Awaited<ReturnType<typeof getDicti
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <span className="underline">{dict.projects.buttons.github}</span>
+                  <span className="underline">{t("cta.github")}</span>
                 </Link>
               )}
               {project.projectUrl && (
@@ -70,7 +69,7 @@ export async function Bento({ dict }: { dict: Awaited<ReturnType<typeof getDicti
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <span className="underline">{dict.projects.buttons.live}</span>
+                  <span className="underline">{t("cta.live")}</span>
                 </Link>
               )}
             </div>

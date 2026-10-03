@@ -1,8 +1,8 @@
 "use client";
+import { useT } from "next-i18next/client";
 import useSWR from "swr";
 import Image from "next/image";
 import { TriangleAlert } from "lucide-react";
-import { getDictionary } from "@/app/[lang]/dictionaries";
 import { ExtendedLink as Link } from "../commons/extendlink";
 
 interface NowPlaying {
@@ -19,11 +19,8 @@ interface NowPlaying {
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
-export function Spotify({
-  dict,
-}: {
-  dict: Awaited<ReturnType<typeof getDictionary>>;
-}) {
+export function Spotify() {
+  const { t } = useT("about");
   const { data, error, isLoading } = useSWR<NowPlaying>(
     "/api/now-playing",
     fetcher,
@@ -35,7 +32,7 @@ export function Spotify({
       <div className="relative overflow-hidden min-h-36 rounded-xl bg-mist-200 px-4 py-2 flex flex-col justify-center">
         <div className="absolute inset-0 z-10 animate-shimmer bg-linear-to-r from-transparent via-mist-50/80 to-transparent" />
         <div className="flex gap-x-2">
-          <div className="w-24 h-24 rounded-md bg-mist-300 shrink-0"></div>
+          <div className="w-24 h-24 rounded-md bg-mist-300 shrink-0" />
           <div className="flex flex-col gap-y-2 justify-center min-w-0 flex-1">
             <div className="h-8 rounded bg-mist-300 w-3/4" />
             <div className="h-4 rounded bg-mist-300" />
@@ -50,7 +47,7 @@ export function Spotify({
     return (
       <div className="min-h-36 rounded-xl bg-yellow-200 px-4 py-2 flex flex-col justify-center">
         <TriangleAlert className="h-8 w-8" />
-        <p className="font-semibold">{dict.about.stats.spotify.error}</p>
+        <p className="font-semibold">{t("stats.spotify.error")}</p>
       </div>
     );
   }
@@ -59,9 +56,9 @@ export function Spotify({
     return (
       <div className="min-h-36 rounded-xl bg-mist-100 px-4 py-2 flex flex-col justify-center">
         <p className="font-semibold">
-          {dict.about.stats.spotify.noTracks.header}
+          {t("stats.spotify.noTracks.header")}
         </p>
-        <p>{dict.about.stats.spotify.noTracks.description}</p>
+        <p>{t("stats.spotify.noTracks.description")}</p>
       </div>
     );
   }

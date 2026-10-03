@@ -1,9 +1,8 @@
 "use client";
-
+import { useT } from "next-i18next/client";
 import { ChevronDown, MessageSquare } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { ChangeEvent, SubmitEvent, MouseEvent } from "react";
-import { useDictionary } from "../DictionaryProvider";
 
 enum Form {
   Initial,
@@ -34,7 +33,7 @@ const initialFormData: FormDataProps = {
 };
 
 export function EmailForm() {
-  const dict = useDictionary();
+  const { t } = useT("contact");
   const [formData, setFormData] = useState<FormDataProps>(initialFormData);
   const [formErrors, setFormErrors] = useState<Partial<FormDataProps>>({});
   const [form, setForm] = useState<FormState>({ state: Form.Initial });
@@ -55,7 +54,7 @@ export function EmailForm() {
     });
     setFormErrors({
       ...formErrors,
-      [name]: value ? undefined : `${name} ${dict.contact.form.error.required}`,
+      [name]: value ? undefined : `${name} ${t("form.error.required")}`,
     });
   }
 
@@ -167,7 +166,7 @@ export function EmailForm() {
         setForm({ state: Form.Success });
         setTimeout(() => setForm({ state: Form.Initial }), 5000);
       } else {
-        setForm({ state: Form.Error, message: dict.contact.form.error.failed });
+        setForm({ state: Form.Error, message: t("form.error.failed") });
         setTimeout(() => setForm({ state: Form.Initial }), 5000);
       }
     } else {
@@ -193,27 +192,27 @@ export function EmailForm() {
     Boolean(formData.message.trim());
   const submitLabel =
     form.state === Form.Loading
-      ? dict.contact.form.submitLabel.loading
+      ? t("form.submit.loading")
       : allFieldsFilled
-        ? dict.contact.form.submitLabel.complete
+        ? t("form.submit.complete")
         : allFieldsEmpty
-          ? dict.contact.form.submitLabel.empty
-          : dict.contact.form.submitLabel.partial;
+          ? t("form.submit.empty")
+          : t("form.submit.partial");
 
   return (
     <section className="px-4 py-6 border rounded-xl border-mist-400 bg-mist-200">
       <div className="flex items-center gap-x-2 pl-2">
         <MessageSquare className="w-6 h-6" />
-        <h2 className="text-2xl font-semibold">{dict.contact.form.title}</h2>
+        <h2 className="text-2xl font-semibold">{t("form.title")}</h2>
       </div>
       <form onSubmit={handleSubmit} className="text-lg mt-4 space-y-2">
         <div className="flex gap-x-4">
           <div className="w-1/2">
-            <p className="text-base pl-2">{dict.contact.form.label.name}</p>
+            <p className="text-base pl-2">{t("form.label.name")}</p>
             <input
               className="block w-full rounded-lg bg-mist-100 focus:outline-none p-2"
               type="text"
-              placeholder={dict.contact.form.placeholder.name}
+              placeholder={t("form.placeholder.name")}
               name="name"
               value={formData.name}
               onChange={handleChange}
@@ -221,11 +220,11 @@ export function EmailForm() {
           </div>
           <input type="text" name="honeypot" className="hidden" />
           <div className="w-1/2">
-            <p className="text-base pl-2">{dict.contact.form.label.email} *</p>
+            <p className="text-base pl-2">{t("form.label.email")} *</p>
             <input
               className="block w-full rounded-lg bg-mist-100 focus:outline-none p-2"
               type="email"
-              placeholder={dict.contact.form.placeholder.email}
+              placeholder={t("form.placeholder.email")}
               name="email"
               value={formData.email}
               onChange={handleChange}
@@ -234,7 +233,7 @@ export function EmailForm() {
           </div>
         </div>
         <div>
-          <p className="text-base pl-2">{dict.contact.form.label.subject} *</p>
+          <p className="text-base pl-2">{t("form.label.subject")} *</p>
           <div ref={subjectRef} className="relative">
             <input type="hidden" name="subject" value={formData.subject} />
             <button
@@ -246,8 +245,8 @@ export function EmailForm() {
             >
               <span>
                 {formData.subject
-                  ? dict.contact.form.subjects[formData.subject]
-                  : dict.contact.form.placeholder.subject}
+                  ? t(`form.subjects.${formData.subject}`)
+                  : t("form.placeholder.subject")}
               </span>
               <ChevronDown
                 className={`absolute right-2 top-1/2 -translate-y-1/2 h-6 w-6 text-mist-900 duration-200 ${isSubjectOpen ? "rotate-180" : ""}`}
@@ -270,7 +269,7 @@ export function EmailForm() {
                       aria-selected={isSelected}
                       onClick={() => handleSubjectSelect(option)}
                     >
-                      {dict.contact.form.subjects[option]}
+                      {t(`form.subjects.${option}`)}
                     </button>
                   );
                 })}
@@ -279,10 +278,10 @@ export function EmailForm() {
           </div>
         </div>
         <div>
-          <p className="text-base pl-2">{dict.contact.form.label.message} *</p>
+          <p className="text-base pl-2">{t("form.label.message")} *</p>
           <textarea
             className="block w-full resize-none rounded-lg bg-mist-100 focus:outline-none p-2"
-            placeholder={dict.contact.form.placeholder.message}
+            placeholder={t("form.placeholder.message")}
             name="message"
             value={formData.message}
             onChange={handleChange}
@@ -300,11 +299,11 @@ export function EmailForm() {
         <div className="h-4">
           {form.state === Form.Error && (
             <p className="text-red-800">
-              {form.message ?? dict.contact.form.error.other}
+              {form.message ?? t("form.error.other")}
             </p>
           )}
           {form.state === Form.Success && (
-            <p className="text-green-800">{dict.contact.form.success}</p>
+            <p className="text-green-800">{t("form.success")}</p>
           )}
         </div>
       </form>

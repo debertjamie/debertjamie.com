@@ -11,6 +11,10 @@ type CardProps = {
   initialY: number;
   baseZIndex: number;
   loading?: "lazy" | "eager";
+  className?: string;
+  width?: number;
+  height?: number;
+  scale?: boolean;
 };
 
 export function StackImage({
@@ -20,7 +24,11 @@ export function StackImage({
   initialX,
   initialY,
   baseZIndex,
-  loading
+  loading,
+  className = "",
+  width,
+  height,
+  scale,
 }: CardProps) {
   return (
     <Draggable
@@ -28,7 +36,8 @@ export function StackImage({
       initialX={initialX}
       initialY={initialY}
       baseZIndex={baseZIndex}
-      className="absolute h-42 w-32 origin-center overflow-hidden rounded-2xl border-4 border-mist-300 bg-mist-200 shadow-2xl transition-transform duration-300 ease-out hover:scale-105 sm:h-72 sm:w-56"
+      style={{ width, height }}
+      className={`absolute h-42 w-32 origin-center overflow-hidden rounded-2xl border-4 border-mist-300 bg-mist-200 shadow-2xl transition-transform duration-300 ease-out sm:h-72 sm:w-56 ${scale && "hover:scale-105"} ${className}`}
     >
       <Image
         src={src}

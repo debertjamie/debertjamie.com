@@ -1,18 +1,18 @@
+import { getT } from "next-i18next/server";
 import { Email } from "@/src/components/contact/email";
-import { getDictionary } from "../dictionaries";
 import { EmailForm } from "@/src/components/contact/form";
 import { Grid } from "@/src/components/contact/grid";
 import { RevealSection } from "@/src/components/commons/reveal";
 
 export default async function Contact({ params }: PageProps<"/[lang]/contact">) {
   const { lang } = await params;
-  const dict = await getDictionary(lang as "en" | "zh-CN");
+  const { t } = await getT("contact", { lng: lang });
 
   return (
     <main className="flex flex-col">
       <section className="flex flex-col gap-y-2 border-y border-mist-300 py-10 md:py-20 px-8">
-        <h1 className="text-5xl">{dict.contact.header.title}</h1>
-        <span>{dict.contact.header.description}</span>
+        <h1 className="text-5xl">{t("header.title")}</h1>
+        <span>{t("header.description")}</span>
       </section>
       <RevealSection>
         <Email />

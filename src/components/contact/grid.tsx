@@ -35,7 +35,6 @@ export function Grid() {
       >
         <WeChat className="h-8 w-8" />
         <span>WeChat</span>
-        <ExternalLink className="absolute right-4 top-4" />
       </Link>
     </section>
   );

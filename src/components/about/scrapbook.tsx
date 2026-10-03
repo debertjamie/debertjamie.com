@@ -1,6 +1,6 @@
 "use client";
+import { useT } from "next-i18next/client";
 import Image from "next/image";
-import { useDictionary } from "../DictionaryProvider";
 import { Draggable } from "../commons/draggable";
 
 const stickers = [
@@ -70,7 +70,7 @@ const stickers = [
 ];
 
 export function Scrapbook() {
-  const dict = useDictionary();
+  const { t } = useT("about");
   return (
     <div className="border-y border-mist-300">
       <div className="relative mx-auto hidden min-h-152 max-w-6xl bg-[radial-gradient(#d7cec0_1px,transparent_1px)] bg-size-[18px_18px] px-4 py-8 md:block">
@@ -91,11 +91,7 @@ export function Scrapbook() {
               />
               <div className="pointer-events-none absolute left-1/2 top-full z-20 mt-3 w-48 -translate-x-1/2 translate-y-2 rounded-xl border border-mist-300 bg-mist-100/95 p-3 opacity-0 shadow-lg backdrop-blur-sm transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                 <p className="text-sm leading-relaxed">
-                  {
-                    dict.about.scrapbook[
-                      sticker.text as keyof typeof dict.about.scrapbook
-                    ]
-                  }
+                  {t(`scrapbook.${sticker.text}`)}
                 </p>
               </div>
             </div>
@@ -131,11 +127,7 @@ export function Scrapbook() {
                   </span>
                 </div>
                 <p className="pt-1 text-sm leading-6">
-                  {
-                    dict.about.scrapbook[
-                      sticker.text as keyof typeof dict.about.scrapbook
-                    ]
-                  }
+                  {t(`scrapbook.${sticker.text}`)}
                 </p>
               </article>
             ))}

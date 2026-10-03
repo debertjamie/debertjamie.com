@@ -1,6 +1,6 @@
 "use client";
+import { useT } from "next-i18next/client";
 import { useCallback, useEffect, useRef } from "react";
-import { useDictionary } from "../DictionaryProvider";
 import createGlobe, { type Globe } from "cobe";
 import { MapPin } from "lucide-react";
 
@@ -20,7 +20,7 @@ const southeastAsiaMarkers: Array<{
 ];
 
 export function Globe() {
-  const dict = useDictionary();
+  const { t } = useT("home");
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const globeRef = useRef<Globe | null>(null);
   const dragStartRef = useRef<{
@@ -151,7 +151,7 @@ export function Globe() {
       <div className="z-20 flex items-center gap-2 text-base">
         <MapPin className="h-4 w-4" strokeWidth={2} />
         <span className="font-medium tracking-wide">
-          {dict.home.globe.name}
+          {t("grid.globe_name")}
         </span>
       </div>
 
@@ -175,7 +175,9 @@ export function Globe() {
               filter: `blur(calc((1 - var(--cobe-visible-${s.id}, 0)) * 8px))`,
             }}
           >
-            <span className="text-sm font-medium bg-mist-800 text-mist-50 px-2 py-0.5 rounded-2xl whitespace-nowrap">{dict.home.globe.loc}</span>
+            <span className="text-sm font-medium bg-mist-800 text-mist-50 px-2 py-0.5 rounded-2xl whitespace-nowrap">
+              {t("grid.globe_loc")}
+            </span>
           </div>
         ))}
       </div>

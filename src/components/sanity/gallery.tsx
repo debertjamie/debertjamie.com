@@ -1,7 +1,7 @@
 "use client";
+import { useT } from "next-i18next/client";
 import type { SanityImageSource } from "@sanity/image-url";
 import { ImageComponent } from "./image";
-import { useDictionary } from "../DictionaryProvider";
 
 type GalleryValue = {
   title: string;
@@ -13,7 +13,7 @@ type GalleryValue = {
 };
 
 export function GalleryComponent({ value }: { value: GalleryValue }) {
-    const dict = useDictionary();
+  const { t } = useT();
   return (
     <div className="px-4 pb-1 pt-4 border border-mist-300 bg-mist-100 rounded-lg">
       <span className="font-semibold">{value.title}</span>
@@ -31,7 +31,7 @@ export function GalleryComponent({ value }: { value: GalleryValue }) {
           </div>
         ))}
       </div>
-      <span className="text-sm">{dict.sanity.gallery}</span>
+      <span className="text-sm">{t("sanity.gallery")}</span>
     </div>
   );
 }

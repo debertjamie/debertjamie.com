@@ -1,8 +1,8 @@
+import { getT } from "next-i18next/server";
 import Image from "next/image";
 import { Notes } from "@/src/components/blog/notes";
 import { Posts } from "@/src/components/blog/posts";
 import { Navbar } from "@/src/components/blog/navbar";
-import { getDictionary } from "../dictionaries";
 import { Reveal, RevealSection } from "@/src/components/commons/reveal";
 
 type BlogTab = "posts" | "notes";
@@ -20,7 +20,7 @@ export default async function Blog({
   searchParams,
 }: PageProps<"/[lang]/blog">) {
   const { lang } = await params;
-  const dict = await getDictionary(lang as "en" | "zh-CN");
+  const { t } = await getT("blog", { lng: lang });
   const activeTab = normalizeTab(
     searchParams ? (await searchParams).tab : undefined,
   );
@@ -39,8 +39,8 @@ export default async function Blog({
           />
         </div>
         <Reveal className="mt-auto z-50 px-8 pb-12 pt-4 not-md:pt-72">
-          <h1 className="text-5xl">{dict.blog.header.title}</h1>
-          <p>{dict.blog.header.description}</p>
+          <h1 className="text-5xl">{t("hero.title")}</h1>
+          <p>{t("hero.description")}</p>
         </Reveal>
       </section>
       <RevealSection className="flex flex-col gap-y-4 pb-4 border-t border-mist-300">
@@ -48,8 +48,8 @@ export default async function Blog({
           <Navbar activeTab={activeTab} />
         </div>
         <div className="px-8">
-          {activeTab === "posts" && <Posts dict={dict} locale={lang} />}
-          {activeTab === "notes" && <Notes dict={dict} locale={lang} />}
+          {activeTab === "posts" && <Posts t={t} locale={lang} />}
+          {activeTab === "notes" && <Notes t={t} locale={lang} />}
         </div>
       </RevealSection>
     </main>

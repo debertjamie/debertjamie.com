@@ -26,8 +26,8 @@ export const HEADER_LINKS = [
   },
   {
     icon: <ChartNoAxesColumn className="w-5 h-5" />,
-    href: "/board",
-    label: "board",
+    href: "/guestbook",
+    label: "guestbook",
   },
   {
     icon: <MessagesSquare className="w-5 h-5" />,
@@ -67,8 +67,8 @@ export const FOOTER_GROUP = [
   ],
   [
     {
-      href: "/board",
-      label: "board",
+      href: "/guestbook",
+      label: "guestbook",
     },
     {
       href: "/friends",

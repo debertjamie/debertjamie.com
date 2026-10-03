@@ -1,5 +1,5 @@
 "use client";
-import { useDictionary } from "../DictionaryProvider";
+import { useT } from "next-i18next/client";
 import { HoverLink } from "../commons/hoverlink";
 import type { JSX } from "react/jsx-runtime";
 
@@ -8,7 +8,7 @@ type NavbarProps = {
 };
 
 export function Navbar({ links }: NavbarProps) {
-  const dict = useDictionary();
+  const { t } = useT("nav");
 
   return (
     <nav className="hidden md:block">
@@ -16,7 +16,7 @@ export function Navbar({ links }: NavbarProps) {
         {links.map((link) => (
           <li key={link.label}>
             <HoverLink href={link.href} className="px-3 py-2 font-medium text-mist-600 transition-colors duration-300 hover:text-mist-900">
-              {dict.nav[link.label as keyof typeof dict.nav]}
+              {t(link.label)}
             </HoverLink>
           </li>
         ))}

@@ -1,8 +1,7 @@
 "use client";
-
+import { useT } from "next-i18next/client";
 import { ExtendedLink as Link } from "../commons/extendlink";
 import { useState, useEffect, useRef } from "react";
-import { useDictionary } from "../DictionaryProvider";
 
 type NavbarProps = {
   activeTab: "posts" | "notes";
@@ -11,9 +10,9 @@ type NavbarProps = {
 const tabs = ["posts", "notes"] as const;
 
 export function Navbar({ activeTab }: NavbarProps) {
+  const { t } = useT("blog");
   const [isScrolled, setIsScrolled] = useState(false);
   const navbarRef = useRef(null);
-  const dict = useDictionary();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,7 +44,7 @@ export function Navbar({ activeTab }: NavbarProps) {
               "border-b-4 border-yellow-500"
             }`}
           >
-            {dict.blog.navbar[tab]}
+            {t(`navbar.${tab}`)}
           </Link>
         ))}
       </div>

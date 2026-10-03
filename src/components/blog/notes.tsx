@@ -1,9 +1,9 @@
+import { type TFunction } from "i18next";
 import { ExtendedLink as Link } from "../commons/extendlink";
 import { notesQuery } from "@/src/lib/sanity/lib/query";
 import { sanityFetch } from "@/src/lib/sanity/lib/client";
 import type { NoteType } from "@/src/lib/blog";
 import { formatDate } from "@/src/lib/blog";
-import { getDictionary } from "@/app/[lang]/dictionaries";
 
 export const series = {
   inspiration: "Inspiration 灵感",
@@ -15,7 +15,13 @@ export const series = {
   other: "Other 其他",
 };
 
-export async function Notes({ dict, locale }: { dict: Awaited<ReturnType<typeof getDictionary>>; locale: string }) {
+export async function Notes({
+  t,
+  locale,
+}: {
+  t: TFunction<"blog", undefined>;
+  locale: string;
+}) {
   const notes: NoteType[] = await sanityFetch({
     query: notesQuery,
     tags: ["notes"],
@@ -39,7 +45,7 @@ export async function Notes({ dict, locale }: { dict: Awaited<ReturnType<typeof 
   );
 
   return (
-    <section className="">
+    <div>
       {groupNotes.length > 0 ? (
         <div className="grid gap-y-8">
           {groupNotes.map((group, i) => (
@@ -69,9 +75,9 @@ export async function Notes({ dict, locale }: { dict: Awaited<ReturnType<typeof 
         </div>
       ) : (
         <div className="flex">
-          <p>{dict.notes.notFound}</p>
+          <p>{t("notFound")}</p>
         </div>
       )}
-    </section>
+    </div>
   );
 }

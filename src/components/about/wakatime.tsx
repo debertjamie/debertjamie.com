@@ -1,12 +1,8 @@
-import { getDictionary } from "@/app/[lang]/dictionaries";
+import { type TFunction } from "i18next";
 import { getWakatimeData } from "@/src/lib/wakatime";
 import { LIGHT_MODE_PALETTE, TECH_COLORS } from "../commons/constants";
 
-export async function Wakatime({
-  dict,
-}: {
-  dict: Awaited<ReturnType<typeof getDictionary>>;
-}) {
+export async function Wakatime({ t }: { t: TFunction<"about", undefined> }) {
   const data = await getWakatimeData();
   const totalCodingTime = Math.ceil(data.total_seconds / 3600);
   const averageCodingHours = Math.floor(data.daily_average / 3600);
@@ -30,17 +26,18 @@ export async function Wakatime({
   return (
     <div className="grid md:grid-cols-2 gap-4">
       <div className="group cursor-default border-2 border-blue-300 hover:border-blue-500 bg-blue-200 duration-300 transition-color rounded-lg px-6 py-4">
-        <p className="text-sm">{dict.about.stats.wakatime.time}</p>
+        <p className="text-sm">{t("stats.wakatime.time")}</p>
         <p className="group-hover:scale-105 duration-300 py-2 pl-1">
-          <span className="text-6xl font-bold">{totalCodingTime}</span> hours
+          <span className="text-6xl font-bold">{totalCodingTime}</span>{" "}
+          {t("stats.wakatime.hours")}
         </p>
         <p className="font-semibold">
-          {dict.about.stats.wakatime.average}: {averageCodingHours}h{" "}
+          {t("stats.wakatime.average")}: {averageCodingHours}h{" "}
           {averageCodingMinutes}m
         </p>
       </div>
       <div className="group cursor-default border-2 border-blue-300 hover:border-blue-500 bg-blue-200 duration-300 transition-color rounded-lg px-6 py-4">
-        <p className="text-sm">{dict.about.stats.wakatime.editors}</p>
+        <p className="text-sm">{t("stats.wakatime.editors")}</p>
         <p className="text-5xl font-bold my-2 px-2 py-1 w-fit rounded border-l-4 border-green-400 bg-green-50">
           {editors[0].name}
         </p>
@@ -58,9 +55,7 @@ export async function Wakatime({
         </div>
       </div>
       <div className="md:col-span-2 p-4 border border-mist-500 bg-mist-100 rounded-xl">
-        <p className="pb-2 font-semibold">
-          {dict.about.stats.wakatime.languages}
-        </p>
+        <p className="pb-2 font-semibold">{t("stats.wakatime.languages")}</p>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 auto-rows-32">
           {languages.map((lang, i) => (
             <div
@@ -77,9 +72,18 @@ export async function Wakatime({
                 </p>
                 <p className="text-xs mt-0 5">{lang.percent}%</p>
               </div>
-              <div style={{ background: `color-mix(in srgb, ${getColor(i, lang.name)} 30%, white)` }} className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-center p-4 pointer-events-none">
-                <span className="font-semibold text-sm truncate">{lang.name}</span>
-                <span className="text-xs">{(lang.total_seconds / 3600).toFixed(1)}h ({lang.percent}%)</span>
+              <div
+                style={{
+                  background: `color-mix(in srgb, ${getColor(i, lang.name)} 30%, white)`,
+                }}
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-center p-4 pointer-events-none"
+              >
+                <span className="font-semibold text-sm truncate">
+                  {lang.name}
+                </span>
+                <span className="text-xs">
+                  {(lang.total_seconds / 3600).toFixed(1)}h ({lang.percent}%)
+                </span>
               </div>
             </div>
           ))}
