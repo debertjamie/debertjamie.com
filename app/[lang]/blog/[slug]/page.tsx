@@ -32,13 +32,11 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.description,
-    metadataBase: new URL(`https://debertjamie.com/${lang}/blog/${post.slug}`),
     keywords: post.tags.map((t) => t.tag),
     openGraph: {
       title: post.title,
       description: post.description,
       url: `https://debertjamie.com/${lang}/blog/${post.slug}`,
-      siteName: "debertjamie.com",
       authors: post.author.name,
       tags: post.tags.map((t) => t.tag),
       publishedTime: post._createdAt,

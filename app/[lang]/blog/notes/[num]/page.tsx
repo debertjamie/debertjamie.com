@@ -27,17 +27,13 @@ export async function generateMetadata({
   return {
     title: note.title,
     description: "A short note about " + note.title,
-    metadataBase: new URL(
-      `https://debertjamie.com/${lang}blog/notes/${note.slug}`,
-    ),
-    keywords: note.series ? [note.series] : [],
+    keywords: [note.series],
     openGraph: {
       title: note.title,
       description: "A short note about " + note.title,
       url: `https://debertjamie.com/${lang}/blog/notes/${note.slug}`,
-      siteName: "debertjamie.com",
       authors: "Debert Jamie",
-      tags: note.series ? [note.series] : [],
+      tags: [note.series],
       publishedTime: note._createdAt,
       modifiedTime: note._updatedAt || "",
       locale: note.locale,

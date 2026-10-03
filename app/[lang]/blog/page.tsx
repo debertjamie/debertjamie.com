@@ -1,4 +1,5 @@
 import { getT } from "next-i18next/server";
+import type { Metadata } from "next";
 import Image from "next/image";
 import { Notes } from "@/src/components/blog/notes";
 import { Posts } from "@/src/components/blog/posts";
@@ -13,6 +14,42 @@ function normalizeTab(tab: string | string[] | undefined): BlogTab {
     return value;
   }
   return "posts";
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: "en" | "zh-CN" }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  const { t } = await getT("blog", { lng: lang });
+  const ogImage = new URL(`/${lang}/og`, "https://debertjamie.com");
+  ogImage.searchParams.set("title", t("metadata.title"));
+  ogImage.searchParams.set("description", t("metadata.description"));
+
+  return {
+    title: t("metadata.title"),
+    description: t("metadata.description"),
+    openGraph: {
+      title: t("metadata.title"),
+      description: t("metadata.description"),
+      url: `https://debertjamie.com/${lang}/blog`,
+      locale: lang,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: t("metadata.title"),
+        },
+      ],
+    },
+    twitter: {
+      title: t("metadata.title"),
+      description: t("metadata.description"),
+      images: [ogImage],
+    },
+  };
 }
 
 export default async function Blog({

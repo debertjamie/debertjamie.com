@@ -1,7 +1,44 @@
 import { getT } from "next-i18next/server";
+import type { Metadata } from "next";
 import Image from "next/image";
 import { Bento } from "@/src/components/projects/bento";
 import { Reveal, RevealSection } from "@/src/components/commons/reveal";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: "en" | "zh-CN" }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  const { t } = await getT("projects", { lng: lang });
+  const ogImage = new URL(`/${lang}/og`, "https://debertjamie.com");
+  ogImage.searchParams.set("title", t("metadata.title"));
+  ogImage.searchParams.set("description", t("metadata.description"));
+
+  return {
+    title: t("metadata.title"),
+    description: t("metadata.description"),
+    openGraph: {
+      title: t("metadata.title"),
+      description: t("metadata.description"),
+      url: `https://debertjamie.com/${lang}/projects`,
+      locale: lang,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: t("metadata.title"),
+        },
+      ],
+    },
+    twitter: {
+      title: t("metadata.title"),
+      description: t("metadata.description"),
+      images: [ogImage],
+    },
+  };
+}
 
 export default async function Now({ params }: PageProps<"/[lang]/projects">) {
   const { lang } = await params;

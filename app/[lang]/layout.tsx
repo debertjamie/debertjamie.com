@@ -32,9 +32,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   const { t } = await getT("layout", { lng: lang });
+  const ogImage = `/${lang}/og`;
 
   return {
-    metadataBase: new URL("https://debertjamie.com"),
+    metadataBase: new URL(`https://debertjamie.com/${lang}`),
     title: {
       default: t("metadata.title"),
       template: `%s | ${t("metadata.title")}`,
@@ -47,9 +48,17 @@ export async function generateMetadata({
       },
       description: t("metadata.description"),
       type: "website",
-      url: "https://debertjamie.com",
+      url: `https://debertjamie.com/${lang}`,
       siteName: t("metadata.title"),
       locale: lang,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: t("metadata.title"),
+        },
+      ],
     },
     twitter: {
       title: {
@@ -60,6 +69,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       site: "@debertjamie",
       creator: "@debertjamie",
+      images: [ogImage],
     },
     robots: {
       index: true,

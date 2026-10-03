@@ -1,4 +1,5 @@
 import { getT } from "next-i18next/server";
+import type { Metadata } from "next";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import type { ComponentProps } from "react";
@@ -18,6 +19,42 @@ function formatDate(date: string, locale: string = "en-GB") {
     month: "long",
   };
   return new Date(date).toLocaleDateString(locale, options);
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: "en" | "zh-CN" }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  const { t } = await getT("now", { lng: lang });
+  const ogImage = new URL(`/${lang}/og`, "https://debertjamie.com");
+  ogImage.searchParams.set("title", t("metadata.title"));
+  ogImage.searchParams.set("description", t("metadata.description"));
+
+  return {
+    title: t("metadata.title"),
+    description: t("metadata.description"),
+    openGraph: {
+      title: t("metadata.title"),
+      description: t("metadata.description"),
+      url: `https://debertjamie.com/${lang}/now`,
+      locale: lang,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: t("metadata.title"),
+        },
+      ],
+    },
+    twitter: {
+      title: t("metadata.title"),
+      description: t("metadata.description"),
+      images: [ogImage],
+    },
+  };
 }
 
 export default async function Now({ params }: PageProps<"/[lang]/now">) {
