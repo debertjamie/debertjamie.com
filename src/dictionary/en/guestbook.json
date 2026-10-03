@@ -3,6 +3,10 @@
     "title": "Guestbook",
     "description": "Leave a message or your thoughts in here!"
   },
+  "metadata": {
+    "title": "Guestbook",
+    "description": "Leave a message or your thoughts in here!"
+  },
   "auth": {
     "login": "Log in to comment",
     "logout": "Log out"

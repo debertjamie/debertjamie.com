@@ -3,6 +3,10 @@
     "title": "Blog",
     "description": "A collection of my thoughts, experiences, and insights on various topics. I write about technology, personal growth, and other subjects that interest me."
   },
+  "metadata": {
+    "title": "Blog",
+    "description": "A collection of thoughts and ideas on various topics I find interesting."
+  },
   "navbar": {
     "posts": "Posts",
     "notes": "Notes"

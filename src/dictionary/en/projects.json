@@ -3,6 +3,10 @@
     "title": "Projects",
     "description": "A collection of projects I worked on, ranging from personal projects to collaborative efforts."
   },
+  "metadata": {
+    "title": "Projects",
+    "description": "Some projects that I have worked on from personal to collaborative ones."
+  },
   "cta": {
     "github": "Repository",
     "live": "Live Demo"

@@ -3,6 +3,10 @@
     "title": "留言簿",
     "description": "在这里留下消息或你的想法！"
   },
+  "metadata": {
+    "title": "留言簿",
+    "description": "在这里留下消息或你的想法！"
+  },
   "auth": {
     "login": "登录以留言",
     "logout": "登出"

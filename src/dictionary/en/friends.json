@@ -3,6 +3,10 @@
     "title": "Friends",
     "description": "Many friends make life more colourful!"
   },
+  "metadata": {
+    "title": "Friends",
+    "description": "Many friends make life more colourful! You can open an issue on the GitHub repository to request a link exchange."
+  },
   "info": {
     "title": "Let's be friends!",
     "self": {

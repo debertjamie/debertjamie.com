@@ -3,6 +3,10 @@
     "title": "项目",
     "description": "我参与的项目集合，涵盖个人项目和协作项目。"
   },
+  "metadata": {
+    "title": "项目",
+    "description": "我参与的一些项目，从个人项目到协作项目。"
+  },
   "cta": {
     "github": "仓库",
     "live": "在线演示"

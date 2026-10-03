@@ -3,6 +3,10 @@
     "title": "I'm Debert Jamie",
     "description": "Undergraduate student at Universitas Gadjah Mada, Indonesia. I enjoy exploring the world of technology, from software engineering to machine learning. Fuelled by curiosity, a desire to learn, and a passion for problem-solving, I strive to create innovative solutions and contribute to the tech community."
   },
+  "metadata": {
+    "title": "About Me",
+    "description": "Hi! I'm Debert Jamie, an undergraduate student at Universitas Gadjah Mada with interests in software engineering, machine learning, and technology. I enjoy exploring new ideas, learning new skills, and contributing to the tech community." 
+  },
   "scrapbook": {
     "discord": "One of my first programming projects was a simple Discord bot that I created in my free time. It helped me understand the basics of programming, databases, and APIs.",
     "psychology": "During high school, I was interested in psychology and human behavior. I was fascinated by how people think and behave in different situations. Although I ended up not pursuing psychology as a career, I still find it interesting and like to read about it.",

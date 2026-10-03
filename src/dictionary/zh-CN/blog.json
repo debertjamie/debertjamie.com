@@ -3,6 +3,10 @@
     "title": "博客",
     "description": "我对各种话题的思考、经历和见解的集合。我写关于技术、个人成长以及其他我感兴趣的主题。"
   },
+  "metadata": {
+    "title": "博客",
+    "description": "我对各种话题的思考和想法的集合。"
+  },
   "navbar": {
     "posts": "文章",
     "notes": "笔记"
