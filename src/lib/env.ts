@@ -24,3 +24,5 @@ export const R2AccessKeyId = process.env.R2_ACCESS_KEY_ID;
 export const R2SecretAccessKey = process.env.R2_SECRET_ACCESS_KEY;
 export const R2BucketName = process.env.R2_BUCKET_NAME;
 export const R2PublicUrl = process.env.NEXT_PUBLIC_R2_PUBLIC_URL;
+
+export const clerkId = process.env.CLERK_USER_ID;
