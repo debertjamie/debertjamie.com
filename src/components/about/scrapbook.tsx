@@ -87,7 +87,7 @@ export function Scrapbook() {
                 alt={sticker.alt}
                 width={176}
                 height={176}
-                className="pointer-events-none h-auto w-auto drop-shadow-lg transition-all duration-200 ease-out group-hover:drop-shadow-xl group-hover:scale-110"
+                className="pointer-events-none h-auto w-full drop-shadow-lg transition-all duration-200 ease-out group-hover:drop-shadow-xl group-hover:scale-110"
               />
               <div className="pointer-events-none absolute left-1/2 top-full z-20 mt-3 w-48 -translate-x-1/2 translate-y-2 rounded-xl border border-mist-300 bg-mist-100/95 p-3 opacity-0 shadow-lg backdrop-blur-sm transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                 <p className="text-sm leading-relaxed">

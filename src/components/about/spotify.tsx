@@ -69,15 +69,14 @@ export function Spotify() {
       style={{ background: data.color, color: data.bodyColor }}
       className="relative min-h-36 rounded-xl px-4 py-2 flex items-center gap-x-2 select-none"
     >
-      <div className="w-24 h-24 rounded sm:rounded-lg overflow-hidden shrink-0 bg-mist-300">
-        <span aria-hidden="true" className="pointer-events-none inset-0">
+      <div className="relative w-24 h-24 rounded sm:rounded-lg overflow-hidden shrink-0 bg-mist-300">
+        <span aria-hidden="true" className="pointer-events-none absolute inset-0">
           <Image
             src={data.albumImageUrl}
             alt={data.album}
-            width={0}
-            height={0}
-            sizes="100%"
-            className="inset-0 h-24 w-24 object-cover object-center"
+            fill
+            sizes="96px"
+            className="object-cover object-center"
           />
         </span>
       </div>
