@@ -1,0 +1,21 @@
+{
+  "hero": {
+    "title": "我是 Debert Jamie",
+    "subtitle": "Universitas Gadjah Mada 大三学生，致力于构建可扩展的网络平台和智能数据管道",
+    "timezone": "雅加达时间 / UTC + 07:00"
+  },
+  "grid": {
+    "about_title": "关于我",
+    "about_desc": "大三本科生，专注于软件工程和机器学习。设计网络应用和数据管道，同时探索人工智能和深度学习的世界。热爱技术、解决问题和持续学习。",
+    "links": {
+      "about": "更多关于我",
+      "now": "目前在关注的内容",
+      "blog": "我的博客",
+      "projects": "我的项目"
+    },
+    "guestbook_title": "留言簿",
+    "guestbook_desc": "在这里留下消息或想法！",
+    "globe_name": "位置",
+    "globe_loc": "日惹"
+  }
+}

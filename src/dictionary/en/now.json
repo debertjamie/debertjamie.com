@@ -1,0 +1,7 @@
+{
+  "hero": {
+    "title": "Now - What I'm Focusing On",
+    "description": "A glimpse into my current activities, projects, and thoughts. This page is updated regularly to reflect what I'm currently focusing on."
+  },
+  "lastUpdated": "Last updated: {{date}}"
+}

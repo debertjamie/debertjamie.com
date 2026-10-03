@@ -1,0 +1,96 @@
+{
+  "header": {
+    "title": "I'm Debert Jamie",
+    "description": "Undergraduate student at Universitas Gadjah Mada, Indonesia. I enjoy exploring the world of technology, from software engineering to machine learning. Fuelled by curiosity, a desire to learn, and a passion for problem-solving, I strive to create innovative solutions and contribute to the tech community."
+  },
+  "scrapbook": {
+    "discord": "One of my first programming projects was a simple Discord bot that I created in my free time. It helped me understand the basics of programming, databases, and APIs.",
+    "psychology": "During high school, I was interested in psychology and human behavior. I was fascinated by how people think and behave in different situations. Although I ended up not pursuing psychology as a career, I still find it interesting and like to read about it.",
+    "webdev": "I started learning about web development during my last year of high school. So far I've learned about React, Next.js, and other web development technologies. I also created a simple website that will soon develop into this personal website.",
+    "camera": "I enjoy taking photos of the scenery in the city or campus. Photography taught me to slow down and appreciate the beautiful world around me.",
+    "ml": "I learned about machine learning during my second year of university. My first machine learning project was a classification model to predict El Nino and La Nina events using basic mathematics, the Oceanic El Nino Index dataset, and a custom logistic regression model.",
+    "teaching": "I like to teach math topics like calculus and algebra. You can ask me math-related questions and I will answer them when I have time!",
+    "music": "I like to listen to music while doing daily activities, from songs in the early 2000s to the latest songs. It helps me relax and clear my mind, although sometimes I get distracted and start humming along."
+  },
+  "links": {
+    "cv": "Curriculum Vitae",
+    "now": "I'm Focusing On",
+    "projects": "My Projects"
+  },
+  "experience": {
+    "title": "Experience and Extracurricular Activities",
+    "items": {
+      "utokyo": {
+        "period": "Sept 2026 - Present",
+        "position": "Global Consumer Intelligence (GCI) World 2026 Student",
+        "company": "Matsuo-Iwasawa Laboratory, The University of Tokyo",
+        "description": "Selected for a 3-month intensive global program focused on the business implementation of AI and data science."
+      },
+      "breathe": {
+        "period": "Mar 2026 - Present",
+        "position": "Web Developer",
+        "company": "BREATHE Laboratory, Department of Electrical and Information Engineering, Universitas Gadjah Mada",
+        "description": "Engineered a high-performance website utilizing static generation and asset optimization techniques, resulting in sub-second page load speeds reaching as low as 300 miliseconds across high-volume publication archives. Designed responsive, accessible user interface components and optimized resource load times by leveraging server-side rendering and intelligent asset caching."
+      },
+      "labassistant": {
+        "period": "Feb 2026 - Jun 2026",
+        "position": "Fundamentals of Programming Laboratory Assistant",
+        "company": "Department of Electrical and Information Engineering, Universitas Gadjah Mada",
+        "description": "Assisted undergraduate students in the Fundamentals of Programming laboratory, providing guidance and support to help them understand programming concepts and improve their coding skills. Assisted students in completing lab assignments and challenges for 50+ international undergraduate program students from Information Engineering and Biomedical Engineering majors."
+      },
+      "tutor": {
+        "period": "Aug 2025 - Dec 2025",
+        "position": "Academic Tutor",
+        "company": "Department of Electrical and Information Engineering, Universitas Gadjah Mada",
+        "description": "Tutored undergraduate students in Single Variable Calculus course, providing guidance and support to help them understand complex mathematical concepts and improve their problem-solving skills. Assisted students in preparing for exams and assignments, fostering a positive learning environment."
+      },
+      "findit": {
+        "period": "Oct 2024 - May 2025",
+        "position": "Web Developer",
+        "company": "Find IT! UGM 2025",
+        "description": "Maintained and developed the frontend of Find IT! UGM 2025 website using React and Next.js. Collaborated with the design team to implement responsive and user-friendly interfaces."
+      },
+      "kmteti": {
+        "period": "Sept 2024 - Nov 2024",
+        "position": "IT Staff",
+        "company": "KPU KMTETI 2024",
+        "description": "Designed back-end and database model for election event of electrical and information engineering students association, ensuring data integrity of over 500 participants. Utilized Firebase and Firestore to implement an efficient voting system and real-time results display."
+      }
+    }
+  },
+  "stats": {
+    "wakatime": {
+      "time": "Total Coding Time",
+      "average": "Average Coding Time",
+      "hours": "hours",
+      "editors": "Used Editors",
+      "languages": "Used Languages"
+    },
+    "spotify": {
+      "error": "An error occured while fetching tracks. Please try again later.",
+      "noTracks": {
+        "header": "Seems quiet in here...",
+        "description": "No songs playing currently."
+      }
+    },
+    "water": {
+      "header": "Water Consumed",
+      "description": "Total water consumed this month. Don't forget to stay hydrated!",
+      "total": "L"
+    },
+    "aqi": {
+      "header": "Air Quality Index - Yogyakarta",
+      "classification": {
+        "good": "Good",
+        "moderate": "Moderate",
+        "sensitive": "Unhealthy for Sensitive Groups",
+        "unhealthy": "Unhealthy",
+        "very_unhealthy": "Very Unhealthy",
+        "hazardous": "Hazardous"
+      },
+      "unknown": "No Data",
+      "updated": "Last Updated"
+    },
+    "quote": "You are the first chapter of your own. Embrace what you have, love what you do, and appreciate yourself. Treat every moment as a gift, be the best version of yourself. May your journey be filled with the promise of distant horizons."
+  }
+}

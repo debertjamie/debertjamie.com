@@ -1,0 +1,21 @@
+{
+  "hero": {
+    "title": "I'm Debert Jamie",
+    "subtitle": "Third year undergraduate student at Universitas Gadjah Mada, architecting scalable web platforms and intelligent data pipelines",
+    "timezone": "Jakarta Time / UTC + 07:00"
+  },
+  "grid": {
+    "about_title": "A little about me",
+    "about_desc": "Undergraduate student focused on software engineering and machine learning. Designing web applications and data pipelines, while exploring the world of AI and deep learning. Passionate about technology, problem-solving, and continuous learning.",
+    "links": {
+      "about": "Read More About Me",
+      "now": "Currently Focusing On",
+      "blog": "My Writings",
+      "projects": "View My Projects"
+    },
+    "guestbook_title": "Write A Message",
+    "guestbook_desc": "Leave a message or your thoughts in here!",
+    "globe_name": "Location",
+    "globe_loc": "Yogyakarta"
+  }
+}

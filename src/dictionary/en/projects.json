@@ -1,0 +1,10 @@
+{
+  "header": {
+    "title": "Projects",
+    "description": "A collection of projects I worked on, ranging from personal projects to collaborative efforts."
+  },
+  "cta": {
+    "github": "Repository",
+    "live": "Live Demo"
+  }
+}

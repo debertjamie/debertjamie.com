@@ -1,0 +1,16 @@
+{
+  "hero": {
+    "title": "Blog",
+    "description": "A collection of my thoughts, experiences, and insights on various topics. I write about technology, personal growth, and other subjects that interest me."
+  },
+  "navbar": {
+    "posts": "Posts",
+    "notes": "Notes"
+  },
+  "locale": {
+    "en": "English",
+    "zh-CN": "Simplified Chinese"
+  },
+  "notFound": "No results found.",
+  "gallery": "Pro tip: Click on an image to view it in full size"
+}

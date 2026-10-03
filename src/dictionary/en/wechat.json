@@ -1,0 +1,10 @@
+{
+  "header": {
+    "title": "WeChat",
+    "description": "Where the flowers bloom and the bees buzz. Scan the QR code to connect with me on WeChat!"
+  },
+  "instructions": {
+    "tree": "Tap the tree to view the QR code",
+    "qr": "Scan the QR code to add me on WeChat"
+  }
+}

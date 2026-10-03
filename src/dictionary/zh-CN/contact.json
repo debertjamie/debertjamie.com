@@ -1,0 +1,40 @@
+{
+  "header": {
+    "title": "让我们联系吧！",
+    "description": "如有任何疑问、合作意向，或者只是想打个招呼，欢迎随时联系我！"
+  },
+  "email": "我会尽快回复你。",
+  "form": {
+    "title": "发送消息",
+    "label": {
+      "name": "姓名",
+      "email": "邮箱",
+      "subject": "主题",
+      "message": "消息"
+    },
+    "subjects": {
+      "general": "一般查询",
+      "project": "项目合作",
+      "job": "工作机会",
+      "other": "其他"
+    },
+    "placeholder": {
+      "name": "陈大文",
+      "email": "chendw@mail.com",
+      "subject": "选择一个主题",
+      "message": "与我分享你的想法或问题！我会尽快回复。"
+    },
+    "error": {
+      "required": "是必填字段。",
+      "failed": "发送消息时发生错误。请稍后重试。",
+      "other": "发生错误。请稍后重试。"
+    },
+    "success": "您的消息已成功发送！",
+    "submit": {
+      "loading": "发送中...",
+      "complete": "发送消息",
+      "empty": "请填写表单以发送消息",
+      "partial": "快完成了..."
+    }
+  }
+}

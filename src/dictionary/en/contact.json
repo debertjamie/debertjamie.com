@@ -1,0 +1,40 @@
+{
+  "header": {
+    "title": "Let's Connect!",
+    "description": "Feel free to reach out to me for any inquiries, collaborations, or just to say hi!"
+  },
+  "email": "I will respond as soon as possible.",
+  "form": {
+    "title": "Send A Message",
+    "label": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message"
+    },
+    "subjects": {
+      "general": "General Inquiry",
+      "project": "Project Collaboration",
+      "job": "Job Opportunity",
+      "other": "Other"
+    },
+    "placeholder": {
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "subject": "Select a subject",
+      "message": "Share your thoughts or questions with me! I will respond as soon as possible."
+    },
+    "error": {
+      "required": "is a required field.",
+      "failed": "An error occured while sending your message. Please try again later.",
+      "other": "An error occured. Please try again later."
+    },
+    "success": "Your message has been sent successfully!",
+    "submit": {
+      "loading": "Sending...",
+      "complete": "Send Message",
+      "empty": "Fill in the form",
+      "partial": "Almost there..."
+    }
+  }
+}

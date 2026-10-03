@@ -1,0 +1,24 @@
+{
+  "metadata": {
+    "title": "Debert Jamie",
+    "description": "Hello! I'm Debert, a third year undergraduate student learning about life and technology. Welcome to my internet home where I share my thoughts and projects."
+  },
+  "loading": [
+    "Searching the components...",
+    "Stargazing in Earth...",
+    "Spreading joy and happiness :D",
+    "Choo choo! Train incoming!",
+    "Watching the moon shine...",
+    "Keep calm and keep being cool"
+  ],
+  "error": {
+    "title": "An Error Occured",
+    "description": "We will fix this as soon as possible! In the meantime, please try again later.",
+    "retry": "Try Again"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "This page does not exist, or maybe it got lost in the wind...",
+    "cta": "Go Home"
+  }
+}

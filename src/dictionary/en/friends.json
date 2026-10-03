@@ -1,0 +1,18 @@
+{
+  "header": {
+    "title": "Friends",
+    "description": "Many friends make life more colourful!"
+  },
+  "info": {
+    "title": "Let's be friends!",
+    "self": {
+      "title": "Link exchange information",
+      "description": "You can open an issue on the GitHub repository to request a link exchange.",
+      "conditions": [
+        "Please provide your website URL, a brief description of your website, and a logo or image to represent your website.",
+        "Website must not contain any malicious or illegal content.",
+        "Make sure your site complies with the Indonesian laws and regulations (and the laws of your country)."
+      ]
+    }
+  }
+}
