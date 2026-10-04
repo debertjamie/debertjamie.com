@@ -41,7 +41,7 @@ export default function WeChat() {
         <p>{t("header.description")}</p>
       </section>
       <section className="flex justify-center items-center pt-4 pb-16 relative">
-        <div className="h-[70vh] w-[70vh]">
+        <div className="h-[50vh] w-screen md:h-[70vh] md:w-[70vw]">
           <DesignQR
             style={{
               outline: "none",
@@ -53,7 +53,7 @@ export default function WeChat() {
             details={{
               border: { padding: 10 },
             }}
-            className="h-64"
+            className="h-44 sm:h-64"
             value={wechatUrl!}
             view={view}
             onViewChange={(nextView) => setCurrent(nextView === "qr" ? "qr" : "tree")}
