@@ -75,7 +75,7 @@ export default async function Blog({
             className="select-none pointer-events-none inset-0 h-full w-full object-cover mask-[linear-gradient(to_bottom,black_0%,black_48%,transparent_100%)]"
           />
         </div>
-        <Reveal className="mt-auto z-50 px-8 pb-12 pt-4 not-md:pt-72">
+        <Reveal className="mt-auto z-10 px-8 pb-12 pt-4 not-md:pt-72">
           <h1 className="text-5xl">{t("hero.title")}</h1>
           <p>{t("hero.description")}</p>
         </Reveal>
