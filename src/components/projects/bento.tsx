@@ -18,7 +18,7 @@ export async function Bento({ t }: { t: TFunction<"projects", undefined>}) {
       {projects.map((project) => (
         <div
           key={project._id}
-          className="group relative rounded-lg hover:shadow-md p-4 overflow-hidden border border-mist-500 group cursor-default"
+          className="group relative min-h-fit rounded-lg hover:shadow-md p-4 overflow-hidden border border-mist-500 group cursor-default"
         >
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             <Image
@@ -47,7 +47,7 @@ export async function Bento({ t }: { t: TFunction<"projects", undefined>}) {
                 </div>
               </div>
             </div>
-            <div className="leading-tight h-36">
+            <div className="leading-tight min-h-36">
               <PortableTextRenderer value={project.description} />
             </div>
             <hr className="mb-4 border-mist-500" />

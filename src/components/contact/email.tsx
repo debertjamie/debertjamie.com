@@ -125,7 +125,7 @@ export function Email() {
 
   return (
     <div
-      className="border border-mist-400 rounded-xl flex flex-col items-center justify-center py-24 px-4"
+      className="border border-mist-400 not-md:h-90 rounded-xl flex flex-col items-center justify-center py-24 px-4"
       onMouseEnter={handlePause}
       onMouseLeave={handleResume}
     >

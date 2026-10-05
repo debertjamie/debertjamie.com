@@ -54,7 +54,7 @@ export function Spotify() {
 
   if (!data?.isPlaying) {
     return (
-      <div className="min-h-36 rounded-xl bg-mist-100 px-4 py-2 flex flex-col justify-center">
+      <div className="min-h-fit rounded-xl bg-mist-100 px-4 py-2 flex flex-col justify-center">
         <p className="font-semibold">
           {t("stats.spotify.noTracks.header")}
         </p>
@@ -67,27 +67,28 @@ export function Spotify() {
     <Link
       href={data.songUrl}
       style={{ background: data.color, color: data.bodyColor }}
-      className="relative min-h-36 rounded-xl px-4 py-2 flex items-center gap-x-2 select-none"
+      className="relative min-h-36 h-auto rounded-xl px-4 py-3.5 flex items-center gap-x-3 select-none"
     >
       <div className="relative w-24 h-24 rounded sm:rounded-lg overflow-hidden shrink-0 bg-mist-300">
-        <span aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <span aria-hidden className="pointer-events-none absolute inset-0">
           <Image
             src={data.albumImageUrl}
             alt={data.album}
             fill
+            quality={100}
             sizes="96px"
             className="object-cover object-center"
           />
         </span>
       </div>
-      <div className="flex flex-col justify-center min-w-0 flex-1">
-        <p style={{ color: data.titleColor }} className="text-xl font-semibold w-3/4">
+      <div className="flex flex-col justify-center min-w-0 flex-1 pr-8 wrap-break-word">
+        <p style={{ color: data.titleColor }} className="text-xl font-semibold leading-snug">
           {data.title}
         </p>
-        <p className="text-sm">{data.artist}</p>
-        <p className="text-sm">{data.album}</p>
+        <p className="text-sm leading-snug">{data.artist}</p>
+        <p className="text-sm leading-snug">{data.album}</p>
       </div>
-      <div className="absolute top-5 right-5">
+      <div className="absolute top-4 right-4">
         <Image
           src="/spotify_white.svg"
           alt="Spotify logo"

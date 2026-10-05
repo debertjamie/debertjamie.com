@@ -90,7 +90,7 @@ export default async function About({ params }: PageProps<"/[lang]">) {
         <Experience t={t} />
       </RevealSection>
       <RevealSection>
-        <Stats t={t} />
+        <Stats t={t} lang={lang} />
       </RevealSection>
     </main>
   );

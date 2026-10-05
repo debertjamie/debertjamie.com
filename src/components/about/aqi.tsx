@@ -11,12 +11,14 @@ const colorMapping: Record<string, string> = {
 };
 
 export async function AQI({
-  t
+  t,
+  lang,
 }: {
-  t: TFunction<"about", undefined>
+  t: TFunction<"about", undefined>;
+  lang: string;
 }) {
   const data = await getAQI();
-
+  lang = lang === "en" ? "en-GB" : lang;
   const color =
     data.status === "success"
       ? colorMapping[data.data.classification]
@@ -24,16 +26,16 @@ export async function AQI({
 
   return (
     <div
-      className={`h-full not-md:min-h-40 cursor-default relative p-4 rounded-xl border flex flex-col group ${color}`}
+      className={`h-full not-md:min-h-40 cursor-default p-4 rounded-xl border flex flex-col group ${color}`}
     >
       <p className="font-semibold">{t("stats.aqi.header")}</p>
-      <div className="absolute top-1/2 left-1/2 -translate-1/2 flex flex-col items-center">
+      <div className="mx-auto text-center py-2">
         {data.status === "success" ? (
           <>
             <p className="text-5xl font-bold group-hover:scale-110 duration-300 transition-transform">
               {data.data.current.pollution.aqius}
             </p>
-            <p>
+            <p className="text-base">
               {t(`stats.aqi.classification.${data.data.classification}`)}
             </p>
           </>
@@ -42,10 +44,10 @@ export async function AQI({
         )}
       </div>
       {data.status === "success" && (
-        <p className="absolute bottom-2 text-sm">
+        <p className="text-sm mt-auto">
           {t("stats.aqi.updated")}:{" "}
           <span className="font-semibold">
-            {new Date(data.data.current.pollution.ts).toLocaleString("en-GB", {
+            {new Date(data.data.current.pollution.ts).toLocaleString(lang, {
               month: "long",
               day: "numeric",
               year: "numeric",
