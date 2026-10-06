@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import type { ComponentProps } from "react";
-import { nowQuery } from "@/src/lib/sanity/lib/query";
-import { sanityFetch } from "@/src/lib/sanity/lib/client";
+import { nowQuery } from "@/src/lib/sanity/query";
+import { sanityFetch } from "@/src/lib/sanity/client";
 import { PortableTextRenderer } from "@/src/components/sanity/portableText";
 import { Reveal, RevealSection } from "@/src/components/commons/reveal";
 

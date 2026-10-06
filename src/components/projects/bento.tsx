@@ -1,7 +1,7 @@
 import { type TFunction } from "i18next";
 import Image from "next/image";
-import { projectsQuery } from "@/src/lib/sanity/lib/query";
-import { sanityFetch } from "@/src/lib/sanity/lib/client";
+import { projectsQuery } from "@/src/lib/sanity/query";
+import { sanityFetch } from "@/src/lib/sanity/client";
 import type { ProjectType } from "@/src/lib/blog";
 import { ExtendedLink as Link } from "../commons/extendlink";
 import { PortableTextRenderer } from "../sanity/portableText";

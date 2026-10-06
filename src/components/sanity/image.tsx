@@ -1,6 +1,6 @@
 import type { SanityImageSource } from "@sanity/image-url";
 import Image from "next/image";
-import { urlFor } from "@/src/lib/sanity/lib/image";
+import { urlFor } from "@/src/lib/sanity/image";
 import { OpenImage } from "@/src/components/commons/openimage";
 
 type ImageValue = {

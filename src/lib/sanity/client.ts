@@ -1,6 +1,6 @@
 import { createClient } from "@sanity/client";
 import type { QueryParams } from "@sanity/client";
-import { apiVersion, dataset, projectId, mode } from "../../env";
+import { apiVersion, dataset, projectId, mode } from "../env";
 
 export const client = createClient({
   projectId,

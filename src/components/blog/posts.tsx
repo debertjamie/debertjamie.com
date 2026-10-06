@@ -1,6 +1,6 @@
 import { type TFunction } from "i18next";
-import { postsQuery } from "@/src/lib/sanity/lib/query";
-import { sanityFetch } from "@/src/lib/sanity/lib/client";
+import { postsQuery } from "@/src/lib/sanity/query";
+import { sanityFetch } from "@/src/lib/sanity/client";
 import type { PostType } from "@/src/lib/blog";
 import { Card } from "./card";
 

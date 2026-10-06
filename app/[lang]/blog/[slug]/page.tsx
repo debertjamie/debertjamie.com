@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { Calendar, Clock, User } from "lucide-react";
-import { singlePostQuery } from "@/src/lib/sanity/lib/query";
-import { sanityFetch } from "@/src/lib/sanity/lib/client";
-import { urlFor } from "@/src/lib/sanity/lib/image";
+import { singlePostQuery } from "@/src/lib/sanity/query";
+import { sanityFetch } from "@/src/lib/sanity/client";
+import { urlFor } from "@/src/lib/sanity/image";
 import {
   formatDate,
   readTime,

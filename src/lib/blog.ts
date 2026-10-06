@@ -1,4 +1,4 @@
-import { PortableTextBlock } from "sanity";
+import type { PortableTextBlock } from "@portabletext/types";
 
 export type ProjectType = {
   _id: string;

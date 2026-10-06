@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { singleNoteQuery } from "@/src/lib/sanity/lib/query";
-import { sanityFetch } from "@/src/lib/sanity/lib/client";
+import { singleNoteQuery } from "@/src/lib/sanity/query";
+import { sanityFetch } from "@/src/lib/sanity/client";
 import { formatDate, type NoteType } from "@/src/lib/blog";
 import { series } from "@/src/components/blog/notes";
 import { PortableTextRenderer } from "@/src/components/sanity/portableText";

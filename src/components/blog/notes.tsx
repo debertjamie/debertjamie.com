@@ -1,7 +1,7 @@
 import { type TFunction } from "i18next";
 import { ExtendedLink as Link } from "../commons/extendlink";
-import { notesQuery } from "@/src/lib/sanity/lib/query";
-import { sanityFetch } from "@/src/lib/sanity/lib/client";
+import { notesQuery } from "@/src/lib/sanity/query";
+import { sanityFetch } from "@/src/lib/sanity/client";
 import type { NoteType } from "@/src/lib/blog";
 import { formatDate } from "@/src/lib/blog";
 
