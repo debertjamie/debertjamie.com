@@ -1,4 +1,3 @@
-import { Vibrant } from "node-vibrant/node";
 import { getNowPlaying } from "@/src/lib/spotify";
 
 interface SongResponse {
@@ -81,12 +80,6 @@ export async function GET() {
   const albumImageUrl = song.item.album.images[0]?.url ?? "";
   const songUrl = song.item.external_urls.spotify;
 
-  const albumImageSmall = song.item.album.images[song.item.album.images.length - 1]?.url ?? "";
-  const palette = await (Vibrant.from(albumImageSmall)).getPalette();
-  const color = palette?.Vibrant?.hex ?? "#1DB954";
-  const titleColor = palette?.Vibrant?.titleTextColor ?? "#FFFFFF";
-  const bodyColor = palette?.Vibrant?.bodyTextColor ?? "#FFFFFF";
-
   return new Response(
     JSON.stringify({
       album,
@@ -95,9 +88,6 @@ export async function GET() {
       isPlaying,
       songUrl,
       title,
-      color,
-      titleColor,
-      bodyColor,
     }),
     {
       status: 200,
