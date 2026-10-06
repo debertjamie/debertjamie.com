@@ -9,7 +9,7 @@ export function Message() {
 
 This site is open source! Don't forget to check this repo:
 
-https://github.com/debertjamie/debertjamie.dev
+https://github.com/debertjamie/debertjamie.com
 
 and give it a star ⭐
 

@@ -28,6 +28,7 @@ function languageProxy(request: NextRequest) {
       pathname.startsWith("/api") ||
       pathname.startsWith("/studio") ||
       pathname.startsWith("/l") ||
+      pathname.startsWith("/__clerk") ||
       PUBLIC_FILE.test(pathname)
     ) {
       return NextResponse.next();

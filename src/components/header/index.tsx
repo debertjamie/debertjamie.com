@@ -6,7 +6,7 @@ import { MobileNav } from "./mobilenav";
 export function Header() {
   return (
     <header
-      className={`z-50 duration-300 py-2 px-4 flex items-center justify-between border-b border-mist-300`}
+      className="relative z-50 duration-300 py-2 px-4 flex items-center justify-between border-b border-mist-300"
     >
       <Link href="/" className="px-4 py-2">
         <p className="text-xl font-bold select-none">
