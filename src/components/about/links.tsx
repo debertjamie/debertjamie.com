@@ -43,7 +43,7 @@ export function NavigationPorts() {
         <ChevronRight className="w-4 h-4 text-mist-400 group-hover:text-emerald-500 group-hover:translate-x-1 duration-300 transition-all" />
       </ELink>
       <Link
-        href="/cv"
+        href="/CV_Debert_Jamie_Chanderson.pdf"
         className="group flex items-center justify-between min-w-64 px-4 py-2 bg-white border border-mist-200 rounded-xl shadow-sm hover:shadow-md hover:border-mist-300 transition-all duration-300"
       >
         <div className="flex items-center gap-3">

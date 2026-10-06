@@ -25,7 +25,7 @@ const LINKS: FriendLink[] = [
     avatar: "https://ferpuwi.com/images/logo.png",
   },
   {
-    name: "Garjita Adicandra",
+    name: "Adicandra",
     url: "https://adi-portfolio-website-azure.vercel.app/",
     desc: "AI/ML & Full-Stack Engineer",
   },

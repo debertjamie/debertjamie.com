@@ -1,4 +1,7 @@
 import type { NextConfig } from "next";
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+
+initOpenNextCloudflareForDev();
 
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["127.0.0.1"],
@@ -6,8 +9,6 @@ const nextConfig: NextConfig = {
     qualities: [100, 75],
     remotePatterns: [
       { protocol: "https", hostname: "cdn.debertjamie.com", pathname: "/**", },
-      { protocol: "https", hostname: "cdn.sanity.io", pathname: "/**", },
-      { protocol: "https", hostname: "i.scdn.co", pathname: "/**", },
       { protocol: "https", hostname: "cdn.sanity.io", pathname: "/**", },
       { protocol: "https", hostname: "i.scdn.co", pathname: "/**", },
       { protocol: "https", hostname: "images.unsplash.com", pathname: "/**", },
