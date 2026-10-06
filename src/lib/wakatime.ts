@@ -2,20 +2,11 @@ import { wakatimeKey } from "./env";
 import { unstable_cache as cache } from "next/cache";
 
 interface WakatimeStats {
-    total_seconds: number;
-    daily_average: number;
     languages: {
         name: string;
         percent: number;
         total_seconds: number;
     }[];
-    editors: {
-        name: string;
-    }[];
-    best_day: {
-        date: string;
-        total_seconds: number;
-    };
 }
 
 export const getWakatimeData = cache(
@@ -50,7 +41,7 @@ export const getWakatimeWeeklyData = cache(
       },
     );
     const data = await response.json();
-    return data.data;
+    return data.data as WakatimeStats;
   },
   [],
   { revalidate: 3600 },
