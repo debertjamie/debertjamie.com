@@ -62,6 +62,7 @@ export default async function About({ params }: PageProps<"/[lang]">) {
             width={250}
             height={333}
             quality={100}
+            loading="eager"
             className="rounded-lg border-4 border-mist-200 bg-blue-100 select-none -rotate-6"
           />
           <StackImage
