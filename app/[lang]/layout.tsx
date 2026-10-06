@@ -36,6 +36,9 @@ export async function generateMetadata({
 
   return {
     metadataBase: new URL(`https://debertjamie.com/${lang}`),
+    alternates: {
+      canonical: "https://debertjamie.com"
+    },
     title: {
       default: t("metadata.title"),
       template: `%s | ${t("metadata.title")}`,
@@ -90,7 +93,7 @@ export default async function RootLayout({
   return (
     <html
       lang={lang}
-      className={`${lang === "en" ? snPro.variable : notoSansSC.variable} h-full antialiased`}
+      className={`${snPro.variable} ${lang === "zh-CN" && notoSansSC.variable} h-full antialiased`}
     >
       <ClerkProvider>
         <body className="min-h-screen text-lg bg-mist-50 text-mist-900 flex flex-col scrollbar-none">
