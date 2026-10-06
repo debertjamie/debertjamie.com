@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { getPresignedUploadUrl, saveImageMetadata } from "@/src/lib/admin";
+import { uploadImageAction } from "@/src/lib/admin";
 
 export function UploadForm() {
   const [file, setFile] = useState<File | null>(null);
@@ -28,18 +28,13 @@ export function UploadForm() {
     try {
       const { width, height } = await getImageDimensions(file);
 
-      const { signedUrl, publicUrl } = await getPresignedUploadUrl(
-        file.name,
-        file.type,
-      );
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("alt", altText);
+      formData.append("width", width.toString());
+      formData.append("height", height.toString());
 
-      await fetch(signedUrl, {
-        method: "PUT",
-        body: file,
-        headers: { "Content-Type": file.type },
-      });
-
-      await saveImageMetadata({ url: publicUrl, alt: altText, width, height });
+      await uploadImageAction(formData);
 
       setFile(null);
       setAltText("");
