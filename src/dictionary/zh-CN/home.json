@@ -1,6 +1,6 @@
 {
   "hero": {
-    "title": "我是 Debert Jamie",
+    "title": "Debert Jamie Chanderson 陈宥维",
     "subtitle": "Universitas Gadjah Mada 大三学生，致力于构建可扩展的网络平台和智能数据管道",
     "timezone": "雅加达时间 / UTC + 07:00"
   },
@@ -13,6 +13,8 @@
       "blog": "我的博客",
       "projects": "我的项目"
     },
+    "gallery_title": "摄影",
+    "gallery_desc": "我拍摄的照片集合，通过我的眼睛捕捉瞬间和故事。",
     "guestbook_title": "留言簿",
     "guestbook_desc": "在这里留下消息或想法！",
     "globe_name": "位置",

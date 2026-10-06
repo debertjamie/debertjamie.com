@@ -1,6 +1,6 @@
 {
   "hero": {
-    "title": "I'm Debert Jamie",
+    "title": "Debert Jamie Chanderson",
     "subtitle": "Third year undergraduate student at Universitas Gadjah Mada, architecting scalable web platforms and intelligent data pipelines",
     "timezone": "Jakarta Time / UTC + 07:00"
   },
@@ -13,6 +13,8 @@
       "blog": "My Writings",
       "projects": "View My Projects"
     },
+    "gallery_title": "Photography",
+    "gallery_desc": "A collection of my photos I took, capturing moments and stories through my eyes.",
     "guestbook_title": "Write A Message",
     "guestbook_desc": "Leave a message or your thoughts in here!",
     "globe_name": "Location",
