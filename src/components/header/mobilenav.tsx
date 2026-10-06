@@ -1,9 +1,8 @@
 "use client";
 import { useT } from "next-i18next/client";
 import { Menu, X } from "lucide-react";
-import { usePathname } from "next/navigation";
 import { type JSX, useEffect, useRef, useState } from "react";
-import { HoverLink } from "../commons/hoverlink";
+import { ExtendedLink as Link } from "../commons/extendlink";
 
 type NavbarProps = {
   links: { icon: JSX.Element; href: string; label: string }[];
@@ -12,18 +11,11 @@ type NavbarProps = {
 export function MobileNav({ links }: NavbarProps) {
   const { t } = useT("nav");
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const menuRef = useRef<HTMLButtonElement>(null);
-  const pathname = usePathname();
-  const [prevPath, setPrevPath] = useState<string>(pathname);
-
-  if (pathname !== prevPath) {
-    setPrevPath(pathname);
-    setIsOpen(false);
-  }
+  const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     }
@@ -33,10 +25,9 @@ export function MobileNav({ links }: NavbarProps) {
   }, []);
 
   return (
-    <nav className="md:hidden relative">
+    <nav ref={navRef} className="md:hidden relative">
       <button
         className="relative flex items-center justify-center w-5 h-5 border-mist-700"
-        ref={menuRef}
         aria-expanded={isOpen}
         onClick={() => setIsOpen(!isOpen)}
       >
@@ -57,15 +48,18 @@ export function MobileNav({ links }: NavbarProps) {
         <ul className="flex flex-col gap-y-2 text-base">
           {links.map((link) => (
             <li key={link.label}>
-              <HoverLink
+              <Link
                 href={link.href}
                 className="flex items-center gap-x-2 py-1"
+                onClick={() => {
+                  window.setTimeout(() => setIsOpen(false), 0);
+                }}
               >
                 {link.icon}
                 <span className="font-medium">
                   {t(link.label)}
                 </span>
-              </HoverLink>
+              </Link>
             </li>
           ))}
         </ul>
