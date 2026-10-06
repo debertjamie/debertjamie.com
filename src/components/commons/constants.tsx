@@ -1,5 +1,4 @@
 import {
-  ChartNoAxesColumn,
   Images,
   MessagesSquare,
   PencilLine,
@@ -23,11 +22,6 @@ export const HEADER_LINKS = [
     icon: <Star className="w-5 h-5" />,
     href: "/projects",
     label: "projects",
-  },
-  {
-    icon: <ChartNoAxesColumn className="w-5 h-5" />,
-    href: "/guestbook",
-    label: "guestbook",
   },
   {
     icon: <MessagesSquare className="w-5 h-5" />,
@@ -66,10 +60,6 @@ export const FOOTER_GROUP = [
     },
   ],
   [
-    {
-      href: "/guestbook",
-      label: "guestbook",
-    },
     {
       href: "/friends",
       label: "friends",

@@ -1,13 +1,13 @@
 "use client";
 import { useT } from "next-i18next/client";
-import { ArrowUpRight, PencilLine, Star, StickyNotes } from "lucide-react";
+import { ArrowUpRight, PencilLine, Star, Images } from "lucide-react";
 import { ExtendedLink as Link } from "../commons/extendlink";
 import { Globe } from "./globe";
 
 export function Grid() {
   const { t } = useT("home");
   return (
-    <div className="grid gap-2 border-y border-mist-300 md:grid-cols-[1fr_1.2fr]">
+    <div className="grid gap-2 border-t border-mist-300 md:grid-cols-[1fr_1.2fr]">
       <div className="grid grid-rows-[auto_1fr] gap-2">
         <div className="border shadow-md p-4 h-fit rounded-3xl border-mist-400">
           <h2 className="text-base font-semibold pb-2">
@@ -48,20 +48,21 @@ export function Grid() {
             {t("grid.links.projects")}
             <ArrowUpRight className="absolute top-3 right-3 opacity-0 transform-all -translate-x-2 translate-y-2 duration-300 group-hover:text-mist-500 group-hover:opacity-100 group-hover:translate-0" />
           </Link>
-          <Link href="/guestbook" className="relative col-span-2 sm:col-span-1 md:col-span-2 border border-mist-400 bg-teal-200/10 shadow-xl flex flex-col gap-2 justify-center rounded-3xl p-4 duration-300 transition-colors hover:bg-teal-500/20 hover:border-teal-500 group">
-            <StickyNotes className="text-teal-500 w-5 h-5" />
+          <Link
+            href="/photos"
+            className="relative col-span-2 sm:col-span-1 md:col-span-2 border border-mist-400 shadow-xl flex flex-col gap-2 justify-center rounded-3xl p-4 duration-300 transition-colors hover:bg-teal-500/20 hover:border-teal-500 group"
+          >
+            <Images className="text-teal-500 w-5 h-5" />
             <div className="flex flex-col">
-              <span className="font-semibold">{t("grid.guestbook_title")}</span>
-              <span className="text-base">
-                {t("grid.guestbook_desc")}
-              </span>
+              <span className="font-semibold">{t("grid.gallery_title")}</span>
+              <span className="text-base">{t("grid.gallery_desc")}</span>
             </div>
             <ArrowUpRight className="absolute top-6 right-6 opacity-0 transform-all -translate-x-2 translate-y-2 duration-300 group-hover:text-mist-500 group-hover:opacity-100 group-hover:translate-0" />
           </Link>
         </div>
       </div>
       <div>
-        <div className="border rounded-3xl border-mist-400 h-full">
+        <div className="border rounded-3xl border-mist-400">
           <Globe />
         </div>
       </div>
