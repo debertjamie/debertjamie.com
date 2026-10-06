@@ -1,5 +1,5 @@
-import { createClient } from "next-sanity";
-import type { QueryParams } from "next-sanity";
+import { createClient } from "@sanity/client";
+import type { QueryParams } from "@sanity/client";
 import { apiVersion, dataset, projectId, mode } from "../../env";
 
 export const client = createClient({

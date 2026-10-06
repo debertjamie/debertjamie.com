@@ -1,6 +1,5 @@
-import { groq } from "next-sanity";
+import groq from "groq";
 
-// Reusable post fields
 const postField = groq`
   _id,
   _createdAt,
