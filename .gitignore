@@ -30,12 +30,36 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
-
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local development environment variables (contains secrets)
+.dev.vars
+.dev.vars.*
+.env
+.env.*
+
+# Wrangler / Miniflare local development cache and states
+.wrangler/
+.miniflare/
+
+# Automatically generated Cloudflare configuration/binding types
+.cloudflare/
+
+# Build logs and wrangler diagnostics
+wrangler.log
+.wrangler.log
+
+# Production build outputs (adjust if your framework uses a different folder like .next or output)
+dist/
+.pages/
+.turbo/
+.open-next/
+
+# System Files
+.DS_Store
+Thumbs.db
