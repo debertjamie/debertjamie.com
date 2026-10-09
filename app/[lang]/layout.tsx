@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { SN_Pro, Noto_Sans_SC } from "next/font/google";
 import { I18nProvider } from "next-i18next/client";
-import { getResources, getT, initServerI18next } from "next-i18next/server";
+import { getResources, getT } from "@/src/lib/i18n-server";
 import i18nConfig from "../../i18n.config";
 import { Header } from "@/src/components/header";
 import { Footer } from "@/src/components/footer";
@@ -9,8 +9,6 @@ import { Footer } from "@/src/components/footer";
 import "../globals.css";
 import { Message } from "@/src/components/message";
 import { ClerkProvider } from "@clerk/nextjs";
-
-initServerI18next(i18nConfig);
 
 const snPro = SN_Pro({
   variable: "--font-sn-pro",

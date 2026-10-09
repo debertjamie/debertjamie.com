@@ -1,8 +1,5 @@
 import { ImageResponse } from "next/og";
-import { getT, initServerI18next } from "next-i18next/server";
-import i18nConfig from "../../../i18n.config";
-
-initServerI18next(i18nConfig);
+import { getT } from "@/src/lib/i18n-server";
 
 export async function GET(
   request: Request,

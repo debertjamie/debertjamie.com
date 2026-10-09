@@ -1,4 +1,4 @@
-import { getT } from "next-i18next/server";
+import { getT } from "@/src/lib/i18n-server";
 import type { Metadata } from "next";
 import { Email } from "@/src/components/contact/email";
 import { EmailForm } from "@/src/components/contact/form";

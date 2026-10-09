@@ -1,4 +1,4 @@
-import { getT } from "next-i18next/server";
+import { getT } from "@/src/lib/i18n-server";
 import type { Metadata } from "next";
 import { desc } from "drizzle-orm";
 import { db } from "@/src/lib/db";
