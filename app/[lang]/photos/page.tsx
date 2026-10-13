@@ -27,17 +27,26 @@ export async function generateMetadata({
       locale: lang,
       images: [
         {
-          url: ogImage,
+          url: ogImage.toString(),
           width: 1200,
           height: 630,
           alt: t("metadata.title"),
+          type: "image/png",
         },
       ],
     },
     twitter: {
       title: t("metadata.title"),
       description: t("metadata.description"),
-      images: [ogImage],
+      images: [
+        {
+          url: ogImage.toString(),
+          width: 1200,
+          height: 630,
+          alt: t("metadata.title"),
+          type: "image/png",
+        },
+      ],
     },
   };
 }
