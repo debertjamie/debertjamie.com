@@ -8,7 +8,6 @@ import { Footer } from "@/src/components/footer";
 
 import "../globals.css";
 import { Message } from "@/src/components/message";
-import { ClerkProvider } from "@clerk/nextjs";
 
 const snPro = SN_Pro({
   variable: "--font-sn-pro",
@@ -30,12 +29,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   const { t } = await getT("layout", { lng: lang });
-  const ogImage = `/${lang}/og`;
+  const ogImage = `https://debertjamie.com/${lang}/og`;
 
   return {
     metadataBase: new URL(`https://debertjamie.com/${lang}`),
     alternates: {
-      canonical: "https://debertjamie.com"
+      canonical: "https://debertjamie.com",
     },
     title: {
       default: t("metadata.title"),
@@ -58,6 +57,7 @@ export async function generateMetadata({
           width: 1200,
           height: 630,
           alt: t("metadata.title"),
+          type: "image/png",
         },
       ],
     },
@@ -70,7 +70,15 @@ export async function generateMetadata({
       card: "summary_large_image",
       site: "@debertjamie",
       creator: "@debertjamie",
-      images: [ogImage],
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: t("metadata.title"),
+          type: "image/png",
+        },
+      ],
     },
     robots: {
       index: true,
@@ -93,26 +101,24 @@ export default async function RootLayout({
       lang={lang}
       className={`${snPro.variable} ${lang === "zh-CN" && notoSansSC.variable} h-full antialiased`}
     >
-      <ClerkProvider>
-        <body className="min-h-screen text-lg bg-mist-50 text-mist-900 flex flex-col scrollbar-none">
-          <Message />
-          <I18nProvider
-            language={lang}
-            resources={resources}
-            supportedLngs={i18nConfig.supportedLngs}
-            defaultNS={i18nConfig.defaultNS}
-            fallbackLng={i18nConfig.fallbackLng}
-          >
-            <Header />
-            <div className="min-h-[calc(100vh-14.5rem)] grid md:grid-cols-[clamp(2rem,2vw+1rem,10rem)_auto_clamp(2rem,2vw+1rem,10rem)]">
-              <div className="border-r border-mist-300" />
-              {children}
-              <div className="border-l border-mist-300" />
-            </div>
-            <Footer copyrightYear={new Date().getFullYear()} />
-          </I18nProvider>
-        </body>
-      </ClerkProvider>
+      <body className="min-h-screen text-lg bg-mist-50 text-mist-900 flex flex-col scrollbar-none">
+        <Message />
+        <I18nProvider
+          language={lang}
+          resources={resources}
+          supportedLngs={i18nConfig.supportedLngs}
+          defaultNS={i18nConfig.defaultNS}
+          fallbackLng={i18nConfig.fallbackLng}
+        >
+          <Header />
+          <div className="min-h-[calc(100vh-14.5rem)] grid md:grid-cols-[clamp(2rem,2vw+1rem,10rem)_auto_clamp(2rem,2vw+1rem,10rem)]">
+            <div className="border-r border-mist-300" />
+            {children}
+            <div className="border-l border-mist-300" />
+          </div>
+          <Footer copyrightYear={new Date().getFullYear()} />
+        </I18nProvider>
+      </body>
     </html>
   );
 }
