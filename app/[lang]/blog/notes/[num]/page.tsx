@@ -80,7 +80,9 @@ export default async function NotePage({
         </div>
       </section>
       <article className="px-8 py-4 border-t border-mist-300">
-        <Reveal>
+        {/* `amount: "some"` so a body taller than the viewport still reveals;
+            the default 0.15 threshold can never be met for very long content. */}
+        <Reveal viewport={{ once: true, amount: "some" }}>
           <PortableTextRenderer value={note.content} />
         </Reveal>
       </article>

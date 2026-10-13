@@ -4,7 +4,6 @@ import Image from "next/image";
 import { Calendar, Clock, User } from "lucide-react";
 import { singlePostQuery } from "@/src/lib/sanity/query";
 import { sanityFetch } from "@/src/lib/sanity/client";
-import { urlFor } from "@/src/lib/sanity/image";
 import {
   formatDate,
   readTime,
@@ -29,6 +28,10 @@ export async function generateMetadata({
     notFound();
   }
 
+  const ogImage = new URL(`/${lang}/og`, "https://debertjamie.com");
+  ogImage.searchParams.set("title", post.title);
+  ogImage.searchParams.set("description", post.description);
+
   return {
     title: post.title,
     description: post.description,
@@ -41,7 +44,15 @@ export async function generateMetadata({
       tags: post.tags.map((t) => t.tag),
       publishedTime: post._createdAt,
       modifiedTime: post._updatedAt || "",
-      images: urlFor(post.mainImage.image).width(1200).height(630).url(),
+      images: [
+        {
+          url: ogImage.toString(),
+          width: 1200,
+          height: 630,
+          alt: post.title,
+          type: "image/png",
+        },
+      ],
       locale: post.locale,
       type: "article",
     },
@@ -49,7 +60,15 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: post.title,
       description: post.description,
-      images: urlFor(post.mainImage.image).width(1200).height(630).url(),
+      images: [
+        {
+          url: ogImage.toString(),
+          width: 1200,
+          height: 630,
+          alt: post.title,
+          type: "image/png",
+        },
+      ],
       creator: `@${post.author.twitterUrl.split(".com/")[1]}`,
       site: `@${post.author.twitterUrl.split(".com/")[1]}`,
     },
@@ -105,7 +124,12 @@ export default async function PostPage({
         </Reveal>
       </section>
       <article className="px-8 py-4 border-t border-mist-300">
-        <Reveal>
+        {/* The body can be far taller than the viewport. The default
+            `amount: 0.15` reveal threshold can never be met for a very long
+            element (15% of its own height never fits on screen at once), so it
+            would stay invisible. `amount: "some"` fires as soon as any part
+            scrolls into view. */}
+        <Reveal viewport={{ once: true, amount: "some" }}>
           <PortableTextRenderer value={post.body} />
         </Reveal>
       </article>

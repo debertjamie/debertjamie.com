@@ -6,21 +6,23 @@ import type { PostType } from "@/src/lib/blog";
 import { ExtendedLink as Link } from "../commons/extendlink";
 import { formatDate, readTime, toPlainText } from "@/src/lib/blog";
 
-export function Card({ post, locale }: { post: PostType, locale: string }) {
+export function Card({ post, locale }: { post: PostType; locale: string }) {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [hovered, setHovered] = useState(false);
 
   const bubbleWidth = 240;
   const bubbleHeight = 320;
   const bubbleOffset = 18;
 
   function handleMouseMove(e: React.MouseEvent<HTMLAnchorElement>) {
+    // Clamp so the bubble never spills past the viewport edges.
     const x = Math.min(
       e.clientX + bubbleOffset,
-      window.innerWidth - bubbleWidth - bubbleOffset
+      window.innerWidth - bubbleWidth - bubbleOffset,
     );
     const y = Math.min(
       e.clientY + bubbleOffset,
-      window.innerHeight - bubbleHeight - bubbleOffset
+      window.innerHeight - bubbleHeight - bubbleOffset,
     );
 
     setMousePos({ x: Math.max(bubbleOffset, x), y: Math.max(bubbleOffset, y) });
@@ -31,6 +33,9 @@ export function Card({ post, locale }: { post: PostType, locale: string }) {
       href={`/blog/${post.slug}`}
       className="group/card grid"
       onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseMove}
+      onPointerEnter={() => setHovered(true)}
+      onPointerLeave={() => setHovered(false)}
     >
       <div className="space-y-2">
         <h3 className="peer text-xl font-bold group-hover/card:underline">
@@ -50,10 +55,12 @@ export function Card({ post, locale }: { post: PostType, locale: string }) {
         </div>
       </div>
       <div
-        className="fixed pointer-events-none hidden md:group-hover/card:block z-50 w-60 overflow-hidden bg-yellow-100 p-2 rounded-2xl shadow-xl border border-yellow-300 transition-transform duration-75 ease-out"
+        className="fixed pointer-events-none top-0 left-0 z-50 hidden w-60 overflow-hidden rounded-2xl border border-yellow-300 bg-yellow-100 p-2 shadow-xl md:block"
         style={{
-          left: mousePos.x,
-          top: mousePos.y,
+          transform: `translate3d(${mousePos.x}px, ${mousePos.y}px, 0)`,
+          opacity: hovered ? 1 : 0,
+          visibility: hovered ? "visible" : "hidden",
+          transition: "opacity 150ms ease-out",
         }}
       >
         <Image
