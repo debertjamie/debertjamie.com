@@ -6,6 +6,8 @@ import { CodeBlock } from "../commons/codeblock";
 import { ImageComponent } from "./image";
 import { GalleryComponent } from "./gallery";
 import { BlockQuoteComponent, CalloutComponent } from "./blockquote";
+import { TableComponent } from "./table";
+import { Spoiler } from "./spoiler";
 
 const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"] });
 
@@ -24,6 +26,7 @@ export const CustomPortableTextComponents: PortableTextComponents = {
     blockquote: BlockQuoteComponent,
     callout: CalloutComponent,
     gallery: GalleryComponent,
+    table: TableComponent,
   },
   marks: {
     link: ({ value, children }) => <Link href={value}>{children}</Link>,
@@ -41,11 +44,7 @@ export const CustomPortableTextComponents: PortableTextComponents = {
         {children}
       </code>
     ),
-    spoiler: ({ children }) => (
-      <span className="bg-mist-700 blur-md hover:bg-transparent hover:blur-none transition-all duration-200 select-none">
-        {children}
-      </span>
-    ),
+    spoiler: ({ children }) => <Spoiler>{children}</Spoiler>,
   },
   block: {
     normal: ({ children }) => (
