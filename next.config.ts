@@ -16,6 +16,12 @@ if (
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["127.0.0.1"],
   images: {
+    // Custom loader bypasses the in-Worker /_next/image optimizer on Cloudflare.
+    // Images are resized by their origin CDN (Sanity, Unsplash) or served
+    // directly, which removes per-navigation Worker cost and free-tier CPU
+    // pressure. See src/lib/image-loader.ts.
+    loader: "custom",
+    loaderFile: "./src/lib/image-loader.ts",
     qualities: [100, 75],
     remotePatterns: [
       { protocol: "https", hostname: "cdn.debertjamie.com", pathname: "/**", },
