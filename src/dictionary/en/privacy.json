@@ -1,0 +1,57 @@
+{
+  "metadata": {
+    "title": "Privacy Policy",
+    "description": "What this site collects, and what it doesn't. Last updated: 13th October 2026"
+  },
+  "header": {
+    "title": "Privacy Policy",
+    "updated": "Last updated: 13th October 2026",
+    "description": "A short, honest summary of what this personal site does with data. It is not legal advice."
+  },
+  "sections": {
+    "owner": {
+      "title": "Who runs this site",
+      "body": "This site is run by Debert Jamie Chanderson (\"I\"), who is responsible for the data described here. Contact: hi@debertjamie.com."
+    },
+    "counter": {
+      "title": "Visit counter",
+      "body": "The site keeps an anonymous, all-time count of visits, shown in the footer. The count is a single number. It is not tied to who you are, and no profile is built about you. My legitimate interest is showing a simple visit count while preventing it from being inflated by abuse."
+    },
+    "session": {
+      "title": "Session storage",
+      "body": "To avoid counting the same visit twice, your browser stores a small flag in sessionStorage for the current tab session. It contains no personal information and is cleared when you close the tab."
+    },
+    "ip": {
+      "title": "IP addresses and rate limiting",
+      "body": "When the visit count is incremented, your IP address is converted into a keyed hash (HMAC-SHA256, combined with the current date) to rate-limit abuse. The raw IP is never stored or logged by this site. The hash is stored temporarily in the site's Durable Object storage and deleted within 60 seconds. It is used for nothing else."
+    },
+    "analytics": {
+      "title": "Analytics",
+      "body": "This site uses Cloudflare Web Analytics, a privacy-focused service that measures aggregate traffic such as page views, referrers, country, and browser and performance data. It does not use cookies or track you across websites, and I use it only to understand how the site is used."
+    },
+    "cookies": {
+      "title": "Cookies",
+      "body": "Public pages of this site set no cookies and no advertising or tracking cookies. Cloudflare may set a technical security cookie to protect against bots. The admin area uses Clerk for sign-in, which sets cookies needed for authentication. It is restricted to the site owner, and visitors cannot create accounts."
+    },
+    "form": {
+      "title": "Contact form",
+      "body": "If you use the contact form, I collect your name, email address, the subject you select, and your message. This is used only to read and reply to you. The form is processed by StaticForms, which keeps submissions for 30 days, and delivered to my email inbox. I keep messages in my inbox for as long as needed to respond and for up to 12 months afterward, then delete them. I don't use your details for marketing or share them beyond the services named here."
+    },
+    "thirdparties": {
+      "title": "Third-party services",
+      "body": "Pages and media are served through Cloudflare (hosting, security, analytics), Sanity (content and images), and Neon (database). The contact form uses StaticForms, and the admin area uses Clerk. The \"now playing\" feature is fetched from Spotify by this site's server using my own account, so your browser never contacts Spotify and no visitor data is sent to it. These providers may process request data such as IP addresses to deliver their services and keep standard logs under their own privacy policies."
+    },
+    "noads": {
+      "title": "No ads, no selling",
+      "body": "This site does not run advertising, does not sell data, and does not profile you across other websites."
+    },
+    "yourrights": {
+      "title": "Your rights",
+      "body": "Depending on where you live (for example under the GDPR, UK GDPR, or Indonesia's Personal Data Protection Law), you may have the right to access, correct, delete, or object to the processing of personal data about you. Aside from contact-form messages, this site stores nothing that identifies you, but you're welcome to email me at hi@debertjamie.com and I'll respond to any request."
+    },
+    "questions": {
+      "title": "Changes and questions",
+      "body": "I'll update this page and its date if anything changes. Questions? Email hi@debertjamie.com."
+    }
+  }
+}

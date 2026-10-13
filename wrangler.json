@@ -1,12 +1,26 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "debertjamie",
-  "main": ".open-next/worker.js",
+  "main": "custom-worker.ts",
   "compatibility_date": "2026-10-01",
   "compatibility_flags": ["nodejs_compat"],
+  "durable_objects": {
+    "bindings": [
+      { "name": "VISITOR_COUNTER", "class_name": "VisitorCounter" }
+    ]
+  },
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["VisitorCounter"] }
+  ],
   "assets": {
     "binding": "ASSETS",
     "directory": ".open-next/assets"
+  },
+  "observability": {
+    "logs": {
+        "enabled": true,
+        "invocation_logs": true
+    }
   },
   "r2_buckets": [
     {

@@ -7,5 +7,6 @@
   "now": "现在",
   "photos": "摄影",
   "privacy": "隐私政策",
-  "quote": "行远自迩，登高自卑。"
+  "quote": "行远自迩，登高自卑。",
+  "visitors": "{{formatted}} 次访问"
 }

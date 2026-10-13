@@ -7,5 +7,6 @@
   "photos": "Photos",
   "now": "Now",
   "privacy": "Privacy Policy",
-  "quote": "Great oaks from little acorns grow."
+  "quote": "Great oaks from little acorns grow.",
+  "visitors": "{{formatted}} visitors"
 }

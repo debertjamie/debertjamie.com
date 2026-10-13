@@ -4,6 +4,7 @@ import { ExtendedLink as Link } from "../commons/extendlink";
 import { FOOTER_GROUP } from "../commons/constants";
 import { ExternalLink } from "lucide-react";
 import { LocaleSwitch } from "./localeswitch";
+import { VisitorCount } from "./visitorcount";
 
 export function Footer({ copyrightYear }: { copyrightYear: number }) {
   const { t } = useT("nav");
@@ -24,10 +25,11 @@ export function Footer({ copyrightYear }: { copyrightYear: number }) {
         </div>
         <div className="space-y-1 pb-6">
           <p>&#169; {copyrightYear} Debert Jamie Chanderson</p>
-          <div className="flex gap-x-2 text-base">
+          <div className="flex items-center text-base">
             <Link href="/privacy" className="font-semibold">
               {t("privacy")}
             </Link>
+            <VisitorCount />
           </div>
         </div>
       </div>

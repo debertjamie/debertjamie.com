@@ -15,6 +15,7 @@ const i18nConfig: I18nConfig = {
     "layout",
     "nav",
     "now",
+    "privacy",
     "projects",
     "wechat",
   ],
