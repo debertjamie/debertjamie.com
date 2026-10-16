@@ -1,5 +1,13 @@
 import type { PortableTextBlock } from "@portabletext/types";
 
+export type FriendType = {
+  _id: string;
+  name: string;
+  desc: string;
+  url: string;
+  avatar?: string;
+}
+
 export type ProjectType = {
   _id: string;
   name: string;

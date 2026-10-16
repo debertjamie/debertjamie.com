@@ -22,6 +22,14 @@ const noteField = groq`
   description
 `;
 
+export const friendsQuery = groq`*[_type == "friends"] | order(_updatedAt asc, _createdAt asc){
+  _id,
+  name,
+  desc,
+  url,
+  avatar
+}`
+
 export const projectsQuery = groq`*[_type == "project"] | order(_createdAt desc){
   _id, 
   title,
