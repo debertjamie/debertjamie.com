@@ -37,7 +37,7 @@ export function StackImage({
       initialY={initialY}
       baseZIndex={baseZIndex}
       style={{ width, height }}
-      className={`absolute h-42 w-32 origin-center overflow-hidden rounded-2xl border-4 border-mist-300 bg-mist-200 shadow-2xl transition-transform duration-300 ease-out sm:h-72 sm:w-56 ${scale && "hover:scale-105"} ${className}`}
+      className={`absolute h-52 w-40 origin-center overflow-hidden rounded-2xl border-4 border-mist-300 bg-mist-200 shadow-2xl transition-transform duration-300 ease-out sm:h-72 sm:w-56 ${scale && "hover:scale-105"} ${className}`}
     >
       <Image
         src={src}
