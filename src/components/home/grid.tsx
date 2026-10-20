@@ -62,7 +62,7 @@ export function Grid() {
         </div>
       </div>
       <div>
-        <div className="border rounded-3xl border-mist-400">
+        <div className="border rounded-3xl border-mist-400 h-full">
           <Globe />
         </div>
       </div>
