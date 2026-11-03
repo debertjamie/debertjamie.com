@@ -2,7 +2,12 @@
   "hero": {
     "title": "Debert Jamie Chanderson",
     "subtitle": "Third year undergraduate student at Universitas Gadjah Mada, architecting scalable web platforms and intelligent data pipelines",
-    "timezone": "Jakarta Time / UTC + 07:00"
+    "tagline": "Building things that matter, one commit at a time.",
+    "timezone": "Jakarta Time / UTC + 07:00",
+    "tz_label": "Jakarta",
+    "cta_projects": "View Projects",
+    "cta_blog": "Read Blog",
+    "scroll_hint": "Scroll down"
   },
   "grid": {
     "about_title": "A little about me",
@@ -18,6 +23,10 @@
     "guestbook_title": "Write A Message",
     "guestbook_desc": "Leave a message or your thoughts in here!",
     "globe_name": "Location",
-    "globe_loc": "Yogyakarta"
+    "globe_loc": "Yogyakarta",
+    "recent_posts_title": "Recent Posts",
+    "recent_posts_empty": "No posts yet",
+    "recent_posts_all": "All posts",
+    "bio_more": "About me"
   }
 }

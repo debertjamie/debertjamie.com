@@ -2,7 +2,12 @@
   "hero": {
     "title": "Debert Jamie Chanderson 陈宥维",
     "subtitle": "Universitas Gadjah Mada 大三学生，致力于构建可扩展的网络平台和智能数据管道",
-    "timezone": "雅加达时间 / UTC + 07:00"
+    "tagline": "一次提交，构建有意义的事物。",
+    "timezone": "雅加达时间 / UTC + 07:00",
+    "tz_label": "雅加达",
+    "cta_projects": "查看项目",
+    "cta_blog": "阅读博客",
+    "scroll_hint": "向下滚动"
   },
   "grid": {
     "about_title": "关于我",
@@ -18,6 +23,10 @@
     "guestbook_title": "留言簿",
     "guestbook_desc": "在这里留下消息或想法！",
     "globe_name": "位置",
-    "globe_loc": "日惹"
+    "globe_loc": "日惹",
+    "recent_posts_title": "最新文章",
+    "recent_posts_empty": "暂无文章",
+    "recent_posts_all": "所有文章",
+    "bio_more": "关于我"
   }
 }
