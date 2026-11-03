@@ -1,5 +1,6 @@
 import { type TFunction } from "i18next";
 import { Sparkles, Coffee } from "lucide-react";
+import { Suspense } from "react";
 import { Wakatime } from "./wakatime";
 import { Spotify } from "./spotify";
 import { AQI } from "./aqi";
@@ -18,7 +19,9 @@ export async function Stats({
   return (
     <div className="border-t border-mist-300 grid not-md:px-2 md:grid-cols-2 gap-4">
       <div className="md:col-span-2">
-        <Wakatime t={t} />
+        <Suspense fallback={<div className="animate-pulse h-24 rounded-lg bg-mist-200" />}>
+          <Wakatime t={t} />
+        </Suspense>
       </div>
       <Spotify />
       <div className="relative cursor-default overflow-hidden min-h-fit rounded-xl bg-mist-100 md:bg-mist-200 border border-mist-300 hover:border-mist-400 hover:bg-mist-100 transition-colors duration-300 group">
@@ -56,7 +59,9 @@ export async function Stats({
         </div>
       </div>
       <div className="h-full">
-        <AQI t={t} lang={lang} />
+        <Suspense fallback={<div className="animate-pulse h-24 rounded-lg bg-mist-200" />}>
+          <AQI t={t} lang={lang} />
+        </Suspense>
       </div>
     </div>
   );

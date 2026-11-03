@@ -5,6 +5,7 @@ import { getResources, getT } from "@/src/lib/i18n-server";
 import i18nConfig from "../../i18n.config";
 import { Header } from "@/src/components/header";
 import { Footer } from "@/src/components/footer";
+import { ThemeProvider } from "@/src/components/commons/theme-provider";
 
 import "../globals.css";
 import { Message } from "@/src/components/message";
@@ -100,24 +101,32 @@ export default async function RootLayout({
     <html
       lang={lang}
       className={`${snPro.variable} ${lang === "zh-CN" && notoSansSC.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="min-h-screen text-lg bg-mist-50 text-mist-900 flex flex-col scrollbar-none">
-        <Message />
-        <I18nProvider
-          language={lang}
-          resources={resources}
-          supportedLngs={i18nConfig.supportedLngs}
-          defaultNS={i18nConfig.defaultNS}
-          fallbackLng={i18nConfig.fallbackLng}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange={false}
         >
-          <Header />
-          <div className="min-h-[calc(100vh-14.5rem)] grid md:grid-cols-[clamp(2rem,2vw+1rem,10rem)_auto_clamp(2rem,2vw+1rem,10rem)]">
-            <div className="border-r border-mist-300" />
-            {children}
-            <div className="border-l border-mist-300" />
-          </div>
-          <Footer copyrightYear={new Date().getFullYear()} />
-        </I18nProvider>
+          <Message />
+          <I18nProvider
+            language={lang}
+            resources={resources}
+            supportedLngs={i18nConfig.supportedLngs}
+            defaultNS={i18nConfig.defaultNS}
+            fallbackLng={i18nConfig.fallbackLng}
+          >
+            <Header />
+            <div className="min-h-[calc(100vh-14.5rem)] grid md:grid-cols-[clamp(2rem,2vw+1rem,10rem)_auto_clamp(2rem,2vw+1rem,10rem)]">
+              <div className="border-r border-mist-300" />
+              {children}
+              <div className="border-l border-mist-300" />
+            </div>
+            <Footer copyrightYear={new Date().getFullYear()} />
+          </I18nProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

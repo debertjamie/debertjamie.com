@@ -44,7 +44,7 @@ export const projectsQuery = groq`*[_type == "project"] | order(_createdAt desc)
   },
 }`;
 
-export const postsQuery = groq`*[_type == "post"] | order(_createdAt desc){
+export const postsQuery = groq`*[_type == "post" && isPublished == true] | order(_createdAt desc){
   ${postField},
   date,
   tags[]-> {

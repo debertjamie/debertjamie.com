@@ -28,6 +28,7 @@ export function Draggable({
   style,
 }: DraggableProps) {
   const [dragDelta, setDragDelta] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({ x: initialX, y: initialY });
   const [isDragging, setIsDragging] = useState(false);
   const startCursorPos = useRef({ x: 0, y: 0 });
 
@@ -51,6 +52,7 @@ export function Draggable({
     if (event.currentTarget.hasPointerCapture(event.pointerId)) {
       event.currentTarget.releasePointerCapture(event.pointerId);
     }
+    setPosition((prev) => ({ x: prev.x + dragDelta.x, y: prev.y + dragDelta.y }));
     setDragDelta({ x: 0, y: 0 });
   }
 
@@ -64,7 +66,7 @@ export function Draggable({
       style={{
         ...style,
         zIndex: isDragging ? 50 : baseZIndex,
-        transform: `translate(${initialX + dragDelta.x}px, ${initialY + dragDelta.y}px) rotate(${initialRotation}deg)`,
+        transform: `translate(${position.x + dragDelta.x}px, ${position.y + dragDelta.y}px) rotate(${initialRotation}deg)`,
       }}
     >
       {children}

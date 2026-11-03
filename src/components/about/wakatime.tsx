@@ -35,7 +35,7 @@ export async function Wakatime({ t }: { t: TFunction<"about", undefined> }) {
               <p className="text-lg font-bold">
                 {(lang.total_seconds / 3600).toFixed(1)}h
               </p>
-              <p className="text-xs mt-0 5">{lang.percent}%</p>
+              <p className="text-xs mt-0.5">{lang.percent}%</p>
             </div>
             <div
               style={{
