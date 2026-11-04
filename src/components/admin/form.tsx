@@ -53,25 +53,27 @@ export function UploadForm() {
       className="max-w-md mx-auto p-6 rounded-xl border border-mist-500 shadow-sm"
     >
       <div className="mb-4">
-        <label className="block font-semibold mb-2">Select Image</label>
+        <label htmlFor="admin-file" className="block font-semibold mb-2">Select Image</label>
         <input
           type="file"
-          accept="image/*"
+          id="admin-file"
+          accept="image/jpeg,image/png,image/webp,image/avif"
           onChange={(e) => setFile(e.target.files?.[0] || null)}
-          className="w-full text-sm text-mist-700 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+          className="w-full text-sm text-mist-700 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-mist-200 file:text-mist-900 hover:file:bg-mist-300 file:cursor-pointer"
         />
       </div>
 
       <div className="mb-6">
-        <label className="block text-sm font-semibold mb-2">
+        <label htmlFor="admin-alt" className="block text-sm font-semibold mb-2">
           Alt Text (For Accessibility & SEO)
         </label>
         <input
           type="text"
+          id="admin-alt"
           value={altText}
           onChange={(e) => setAltText(e.target.value)}
           placeholder="e.g. Neon sign in Tokyo at night"
-          className="w-full px-3 py-2 border border-mist-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border border-mist-300 rounded-lg bg-mist-100 focus-visible:outline-2 focus-visible:outline-accent-mark"
           required
         />
       </div>
@@ -79,7 +81,7 @@ export function UploadForm() {
       <button
         type="submit"
         disabled={isUploading || !file}
-        className="w-full bg-mist-900 text-mist-50 py-2 rounded-lg hover:bg-mist-800 disabled:opacity-50 transition-colors"
+        className="w-full bg-mist-900 text-mist-50 py-2 rounded-lg enabled:hover:bg-accent enabled:hover:text-accent-ink disabled:opacity-50 transition-colors"
       >
         {isUploading ? "Uploading to R2..." : "Upload Image"}
       </button>
