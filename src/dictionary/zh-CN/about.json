@@ -7,6 +7,8 @@
     "title": "关于我",
     "description": "你好！我是 Debert Jamie，印度尼西亚 Universitas Gadjah Mada 的本科生，对软件工程、机器学习和技术感兴趣。我喜欢探索新想法，学习新技能，并为技术社区做出贡献。"
   },
+  "scrapbook_title": "关于我的小事",
+  "scrapbook_hint": "可以拖动贴纸。悬停或聚焦贴纸，看看它背后的故事。",
   "scrapbook": {
     "discord": "我在业余时间完成的第一个项目是一个简单的Discord机器人，它帮助我掌握了编程、数据库和API的基础知识。",
     "psychology": "我在高中时期对心理学和人类行为产生了兴趣。我对人们在不同情况下如何思考和行为感到着迷。尽管我最终没有将心理学作为职业，但我仍然觉得它很有趣，喜欢阅读相关的内容。",
@@ -63,24 +65,18 @@
     }
   },
   "stats": {
+    "title": "此刻",
     "wakatime": {
-      "time": "总编码时间",
-      "average": "平均编码时间",
-      "hours": "小时",
-      "editors": "使用过的编辑器",
-      "languages": "使用过的编程语言"
+      "languages": "使用过的编程语言",
+      "empty": "暂时无法获取编程统计。"
     },
     "spotify": {
+      "title": "正在听",
       "error": "获取曲目时发生错误。请稍后重试。",
       "noTracks": {
         "header": "怎一个静字了得？",
         "description": "当前不正在播放的歌曲。"
       }
-    },
-    "water": {
-      "header": "喝水总量",
-      "description": "本月喝水总量。保持水分充足！",
-      "total": "升"
     },
     "aqi": {
       "header": "空气质量指数 - 日惹",

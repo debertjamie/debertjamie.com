@@ -3,6 +3,8 @@
     "title": "WeChat",
     "description": "Where the flowers bloom and the bees buzz. Scan the QR code to connect with me on WeChat!"
   },
+  "seasons": { "label": "Pick a season", "spring": "Spring", "summer": "Summer", "autumn": "Autumn", "winter": "Winter" },
+  "actions": { "showQr": "Show QR code", "showTree": "Back to the tree" },
   "instructions": {
     "tree": "Tap the tree to view the QR code",
     "qr": "Let's be friends on WeChat!"

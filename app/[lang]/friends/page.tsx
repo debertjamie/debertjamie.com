@@ -1,8 +1,10 @@
+import { alternates } from "@/src/lib/seo";
 import { getT } from "@/src/lib/i18n-server";
 import type { Metadata } from "next";
 import { Links } from "@/src/components/friends/links";
 import { Info } from "@/src/components/friends/info";
-import { RevealSection } from "@/src/components/commons/reveal";
+import { Reveal } from "@/src/components/commons/reveal";
+import { PageHeader } from "@/src/components/commons/page-header";
 
 export async function generateMetadata({
   params,
@@ -16,6 +18,7 @@ export async function generateMetadata({
   ogImage.searchParams.set("description", t("metadata.description"));
 
   return {
+    alternates: alternates(lang, "/friends"),
     title: t("metadata.title"),
     description: t("metadata.description"),
     openGraph: {
@@ -55,16 +58,13 @@ export default async function Friends({ params }: PageProps<"/[lang]/friends">) 
 
   return (
     <main className="flex flex-col">
-      <RevealSection className="px-8 py-4 sm:py-20 flex flex-col gap-y-2">
-        <h1 className="text-5xl">{t("header.title")}</h1>
-        <p>{t("header.description")}</p>
-      </RevealSection>
-      <RevealSection>
-        <Links />
-      </RevealSection>
-      <RevealSection>
+      <PageHeader title={t("header.title")} description={t("header.description")} />
+      <Reveal>
+        <Links empty={t("empty")} />
+      </Reveal>
+      <Reveal>
         <Info />
-      </RevealSection>
+      </Reveal>
     </main>
   );
 }

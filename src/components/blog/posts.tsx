@@ -2,7 +2,7 @@ import { type TFunction } from "i18next";
 import { postsQuery } from "@/src/lib/sanity/query";
 import { sanityFetch } from "@/src/lib/sanity/client";
 import type { PostType } from "@/src/lib/blog";
-import { Card } from "./card";
+import { Card, FeaturedCard } from "./card";
 
 export async function Posts({
   t,
@@ -16,21 +16,19 @@ export async function Posts({
     tags: ["posts"],
   });
 
+  if (posts.length === 0) {
+    return <p className="px-4 sm:px-8 py-16 text-xl text-mist-600">{t("notFound")}</p>;
+  }
+
+  const [latest, ...rest] = posts;
   return (
-    <div className="flex flex-col gap-4 py-2">
-      {posts.length > 0 ? (
-        <div className="grid gap-y-8 max-w-2xl">
-          {posts.map((post) => (
-                <article key={post._id}>
-                  <Card post={post} locale={locale} />
-                </article>
-              ))}
-        </div>
-      ) : (
-        <div className="flex">
-          <p>{t("notFound")}</p>
-        </div>
-      )}
+    <div className="flex flex-col">
+      <FeaturedCard post={latest} locale={locale} />
+      {rest.map((post) => (
+        <article key={post._id}>
+          <Card post={post} locale={locale} />
+        </article>
+      ))}
     </div>
   );
 }

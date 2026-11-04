@@ -1,6 +1,7 @@
 "use client";
 import { useT } from "next-i18next/client";
-import { useEffect, useReducer, useRef } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
+import { Pause, Play } from "lucide-react";
 import { ExtendedLink as Link } from "../commons/extendlink";
 import usePrefersReducedMotion from "@/src/hooks/useReducedMotion";
 
@@ -107,11 +108,14 @@ export function Email() {
     if (reduced) dispatch({ type: "PAUSE" });
   }, [reduced]);
 
+  // The prefix keeps cycling, so it needs an explicit pause control.
+  const [stopped, setStopped] = useState(false);
+
   useInterval(
     () => {
       dispatch({ type: "TICK", hold: 50 });
     },
-    state.isActive && !reduced ? 50 : null,
+    state.isActive && !reduced && !stopped ? 50 : null,
   );
 
   const displayMessage = reduced ? prefix[0] : state.message;
@@ -123,27 +127,39 @@ export function Email() {
     if (!reduced) dispatch({ type: "RESUME", maxId: prefix.length });
   }
 
+  // The address is the focal point of the page: anything before the @ works,
+  // and the cycling prefix shows that instead of saying it.
   return (
-    <div
-      className="border border-mist-400 not-md:h-90 rounded-xl flex flex-col items-center justify-center py-24 px-4"
+    <section
+      className="flex flex-col gap-6 px-4 sm:px-8 py-16 md:py-24 border-y border-mist-300"
       onMouseEnter={handlePause}
       onMouseLeave={handleResume}
     >
       <Link
-        href={`mailto:hi@debertjamie.com`}
-        className="text-2xl md:text-4xl border-b-4 border-yellow-600 font-mono inline-flex flex-wrap justify-center max-w-full"
+        href="mailto:hi@debertjamie.com"
+        className="w-fit max-w-full text-[clamp(1.75rem,6vw,5rem)] font-semibold tracking-tight leading-tight underline decoration-4 decoration-accent-mark underline-offset-[0.2em] transition-colors hover:text-accent-text"
         onFocus={handlePause}
         onBlur={handleResume}
       >
         <span className="sr-only">Email hi@debertjamie.com</span>
-        <span className="text-yellow-600 break-all wrap-anywhere text-center" aria-hidden>
-          {displayMessage}
-        </span>
-        <span className="font-semibold whitespace-nowrap" aria-hidden>
-          @debertjamie.com
+        <span aria-hidden className="break-all">
+          <span className="text-mist-600">{displayMessage}</span>
+          <span className="whitespace-nowrap">@debertjamie.com</span>
         </span>
       </Link>
-      <p className="pt-4">{t("email")}</p>
-    </div>
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-lg text-mist-700">
+        <p>{t("email")}</p>
+        {!reduced && (
+          <button
+            type="button"
+            onClick={() => setStopped((s) => !s)}
+            className="inline-flex items-center gap-2 py-2 text-base font-medium text-mist-600 hover:text-mist-900"
+          >
+            {stopped ? <Play className="size-4" aria-hidden /> : <Pause className="size-4" aria-hidden />}
+            {stopped ? t("animation.play") : t("animation.pause")}
+          </button>
+        )}
+      </div>
+    </section>
   );
 }

@@ -10,5 +10,6 @@
   "cta": {
     "github": "Repository",
     "live": "Live Demo"
-  }
+  },
+  "notFound": "No projects yet."
 }

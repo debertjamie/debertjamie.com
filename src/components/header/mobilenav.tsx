@@ -20,15 +20,26 @@ export function MobileNav({ links }: NavbarProps) {
       }
     }
 
+    function handleEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") setIsOpen(false);
+    }
+
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+    };
   }, []);
 
   return (
     <nav ref={navRef} className="md:hidden relative">
       <button
-        className="relative flex items-center justify-center w-5 h-5 border-mist-700"
+        type="button"
+        className="relative flex items-center justify-center size-11 rounded-md hover:bg-mist-200"
+        aria-label={t("menu")}
         aria-expanded={isOpen}
+        aria-controls="mobile-nav-menu"
         onClick={() => setIsOpen(!isOpen)}
       >
         <div
@@ -42,15 +53,17 @@ export function MobileNav({ links }: NavbarProps) {
           <X className="w-6 h-6" />
         </div>
       </button>
+      {/* `invisible` when closed also removes the links from the tab order. */}
       <div
-        className={`absolute right-0 top-12 bg-mist-100 px-2 py-2 min-w-40 rounded-lg shadow-md transition-all duration-300 origin-top-right ${isOpen ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-90 -translate-y-5 pointer-events-none"}`}
+        id="mobile-nav-menu"
+        className={`absolute right-0 top-14 bg-mist-100 border border-mist-300 px-2 py-2 min-w-48 rounded-2xl shadow-md transition-all duration-300 origin-top-right ${isOpen ? "visible opacity-100 scale-100 translate-y-0" : "invisible opacity-0 scale-90 -translate-y-5 pointer-events-none"}`}
       >
         <ul className="flex flex-col gap-y-2 text-base">
           {links.map((link) => (
             <li key={link.label}>
               <Link
                 href={link.href}
-                className="flex items-center gap-x-2 py-1"
+                className="flex items-center gap-x-3 px-3 py-3 rounded-xl hover:bg-mist-200"
                 onClick={() => {
                   window.setTimeout(() => setIsOpen(false), 0);
                 }}

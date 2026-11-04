@@ -44,40 +44,40 @@ export async function Notes({
     [],
   );
 
+  if (groupNotes.length === 0) {
+    return <p className="px-4 sm:px-8 py-16 text-xl text-mist-600">{t("notFound")}</p>;
+  }
+
+  // One block per series: the series name is the heading, notes are rows.
   return (
-    <div>
-      {groupNotes.length > 0 ? (
-        <div className="grid gap-y-8">
-          {groupNotes.map((group, i) => (
-            <div key={i} className="relative pt-6">
-              <div className="absolute pointer-events-none select-none -top-2">
-                <span className="text-5xl sm:text-6xl text-mist-800/10 -z-10">
-                  {series[group.series as keyof typeof series] || group.series}
-                </span>
-              </div>
-              <div className="space-y-3">
-                {group.notes.map((note, j) => (
-                  <div key={j} className="flex gap-x-6">
-                    <span className="text-mist-900 font-semibold">
-                      {formatDate(note.date, locale)}
-                    </span>
-                    <Link
-                      href={`/blog/notes/${note.slug}`}
-                      className="hover:text-olivine-dark dark:hover:text-olivine duration-200"
-                    >
-                      {note.title}
-                    </Link>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="flex">
-          <p>{t("notFound")}</p>
-        </div>
-      )}
+    <div className="flex flex-col">
+      {groupNotes.map((group) => (
+        <section
+          key={group.series}
+          className="grid gap-6 md:grid-cols-12 px-4 sm:px-8 py-12 border-b border-mist-300"
+        >
+          <h2 className="md:col-span-4 md:sticky md:top-20 self-start text-3xl sm:text-4xl font-semibold tracking-tight text-balance break-keep">
+            {series[group.series as keyof typeof series] || group.series}
+          </h2>
+          <ul className="md:col-span-8 flex flex-col">
+            {group.notes.map((note) => (
+              <li key={note._id} className="border-b border-mist-300 last:border-b-0">
+                <Link
+                  href={`/blog/notes/${note.slug}`}
+                  className="group grid gap-1 sm:grid-cols-[9rem_1fr] sm:gap-6 py-4"
+                >
+                  <span className="text-base text-mist-600 tabular-nums">
+                    {formatDate(note.date, locale)}
+                  </span>
+                  <span className="text-xl font-medium transition-colors group-hover:text-accent-text">
+                    {note.title}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
     </div>
   );
 }

@@ -1,23 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { useTheme } from "next-themes";
 import { Sun, Moon } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import usePrefersReducedMotion from "@/src/hooks/useReducedMotion";
 
-export function DarkModeToggle() {
-  const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
-  const prefersReducedMotion = usePrefersReducedMotion();
+const noop = () => () => {};
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+export function DarkModeToggle() {
+  // false on the server and during hydration, true once mounted on the client
+  const mounted = useSyncExternalStore(noop, () => true, () => false);
+  const { resolvedTheme, setTheme } = useTheme();
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   const duration = prefersReducedMotion ? 0 : 0.2;
 
-  // Render a same-size placeholder while hydrating to avoid SSR mismatch
   if (!mounted) {
     return (
       <button
@@ -29,12 +27,12 @@ export function DarkModeToggle() {
     );
   }
 
-  const isDark = theme === "dark";
+  const isDark = resolvedTheme === "dark";
 
   return (
     <button
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="p-2 rounded-md text-mist-600 hover:text-mist-900 hover:bg-mist-100 dark:hover:bg-mist-800 transition-colors duration-200"
+      className="p-2 rounded-md text-mist-600 hover:text-mist-900 hover:bg-mist-200 transition-colors duration-200"
       aria-label="Toggle dark mode"
     >
       <AnimatePresence mode="wait" initial={false}>

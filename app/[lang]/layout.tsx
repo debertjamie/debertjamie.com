@@ -34,9 +34,9 @@ export async function generateMetadata({
 
   return {
     metadataBase: new URL(`https://debertjamie.com/${lang}`),
-    alternates: {
-      canonical: "https://debertjamie.com",
-    },
+    // No canonical here: every page inherits layout metadata, so a canonical
+    // set here would mark all pages as copies of the homepage. Pages set
+    // their own via `alternates()` from src/lib/seo.
     title: {
       default: t("metadata.title"),
       template: `%s | ${t("metadata.title")}`,
@@ -100,7 +100,7 @@ export default async function RootLayout({
   return (
     <html
       lang={lang}
-      className={`${snPro.variable} ${lang === "zh-CN" && notoSansSC.variable} h-full antialiased`}
+      className={`${snPro.variable} ${lang === "zh-CN" ? notoSansSC.variable : ""} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-screen text-lg bg-mist-50 text-mist-900 flex flex-col scrollbar-none">
@@ -119,10 +119,8 @@ export default async function RootLayout({
             fallbackLng={i18nConfig.fallbackLng}
           >
             <Header />
-            <div className="min-h-[calc(100vh-14.5rem)] grid md:grid-cols-[clamp(2rem,2vw+1rem,10rem)_auto_clamp(2rem,2vw+1rem,10rem)]">
-              <div className="border-r border-mist-300" />
+            <div className="min-h-[calc(100vh-14.5rem)]">
               {children}
-              <div className="border-l border-mist-300" />
             </div>
             <Footer copyrightYear={new Date().getFullYear()} />
           </I18nProvider>
@@ -132,6 +130,11 @@ export default async function RootLayout({
   );
 }
 
+// Matches --color-mist-50 in each theme. Follows the OS setting, since the
+// meta tag cannot see the in-page toggle.
 export const viewport: Viewport = {
-  themeColor: "#E3E7E8",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#E3E7E8" },
+    { media: "(prefers-color-scheme: dark)", color: "#07090c" },
+  ],
 };

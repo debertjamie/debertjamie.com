@@ -37,7 +37,7 @@ export function Monogram({
 
   return (
     <div
-      className={`flex items-center justify-center ${size === "default" && "w-15 h-15 text-lg"} text-mist-50 font-semibold ${getBgColor(name)} ${className}`}
+      className={`flex items-center justify-center ${size === "default" && "w-15 h-15 text-lg"} text-white font-semibold ${getBgColor(name)} ${className}`}
     >
       {getInitials(name)}
     </div>

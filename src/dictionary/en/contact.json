@@ -8,6 +8,8 @@
     "description": "Feel free to reach out to me for any inquiries, collaborations, or just to say hi!"
   },
   "email": "I will respond as soon as possible.",
+  "animation": { "pause": "Pause animation", "play": "Play animation" },
+  "elsewhere": { "title": "Elsewhere", "wechat": "Scan my QR code" },
   "form": {
     "title": "Send A Message",
     "label": {

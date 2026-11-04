@@ -92,25 +92,3 @@ export const FOOTER_GROUP = [
     },
   ],
 ];
-
-export const TECH_COLORS: Record<string, string> = {
-  typescript: "#3178C6",
-  javascript: "#F0DB4F",
-  mdx: "#FCB32C",
-  "c++": "#004482",
-  json: "#E43725",
-  css: "#663399",
-  html: "#F06529",
-  python: "#4584B6",
-  go: "#00ADD8",
-  "c#": "#9179E4",
-};
-
-export const LIGHT_MODE_PALETTE = [
-  "#2563EB",
-  "#DB2777",
-  "#16A34A",
-  "#CA8A04",
-  "#9333EA",
-  "#EA580C",
-];

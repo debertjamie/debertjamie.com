@@ -1,8 +1,8 @@
+import { alternates } from "@/src/lib/seo";
 import { getT } from "@/src/lib/i18n-server";
 import type { Metadata } from "next";
-import Image from "next/image";
-import { Bento } from "@/src/components/projects/bento";
-import { Reveal, RevealSection } from "@/src/components/commons/reveal";
+import { ProjectList } from "@/src/components/projects/list";
+import { PageHeader } from "@/src/components/commons/page-header";
 
 export async function generateMetadata({
   params,
@@ -16,6 +16,7 @@ export async function generateMetadata({
   ogImage.searchParams.set("description", t("metadata.description"));
 
   return {
+    alternates: alternates(lang, "/projects"),
     title: t("metadata.title"),
     description: t("metadata.description"),
     openGraph: {
@@ -49,31 +50,14 @@ export async function generateMetadata({
   };
 }
 
-export default async function Now({ params }: PageProps<"/[lang]/projects">) {
+export default async function Projects({ params }: PageProps<"/[lang]/projects">) {
   const { lang } = await params;
   const { t } = await getT("projects", { lng: lang });
 
   return (
-    <main className="flex flex-col">
-      <section className="relative flex flex-col md:h-[calc(100vh-3.5rem)] overflow-hidden">
-        <div className="absolute h-72 w-full md:h-[calc(100vh-3.5rem)]">
-          <Image
-            src="https://images.unsplash.com/photo-1527219525722-f9767a7f2884?q=80&w=2400"
-            alt="Projects"
-            width={2400}
-            height={300}
-            loading="eager"
-            className="select-none pointer-events-none inset-0 h-full w-full object-cover mask-[linear-gradient(to_bottom,black_0%,black_48%,transparent_100%)]"
-          />
-        </div>
-        <Reveal className="mt-auto z-10 px-8 pb-12 pt-4 not-md:pt-72">
-          <h1 className="text-5xl">{t("hero.title")}</h1>
-          <p>{t("hero.description")}</p>
-        </Reveal>
-      </section>
-      <RevealSection className="flex flex-col gap-y-4 px-8 py-4 border-t border-mist-300">
-        <Bento t={t} />
-      </RevealSection>
+    <main className="flex flex-col pb-16">
+      <PageHeader title={t("hero.title")} description={t("hero.description")} />
+      <ProjectList t={t} />
     </main>
   );
 }

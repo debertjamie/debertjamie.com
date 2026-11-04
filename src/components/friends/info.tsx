@@ -3,6 +3,8 @@ import { useT } from "next-i18next/client";
 import { CodeBlock } from "../commons/codeblock";
 import { ExtendedLink as Link } from "../commons/extendlink";
 
+// How to swap links: the rules and the issue link on the left, the details
+// to copy on the right.
 export function Info() {
   const { t } = useT("friends");
   const code = {
@@ -15,24 +17,25 @@ export function Info() {
   }) as unknown as string[];
 
   return (
-    <div className="px-8 py-4 flex flex-col gap-y-2">
-      <h2 className="font-semibold text-2xl">{t("info.title")}</h2>
-      <div className="md:w-3/4">
-        <CodeBlock value={code} />
-      </div>
-      <div className="mx-auto">
+    <section className="grid gap-12 md:grid-cols-12 px-4 sm:px-8 py-20 md:py-28 border-t border-mist-300">
+      <div className="md:col-span-6 flex flex-col gap-6">
+        <h2 className="text-4xl sm:text-5xl font-semibold tracking-tight">{t("info.title")}</h2>
+        <p className="text-xl text-mist-700 text-pretty">{t("info.self.description")}</p>
+        <ol className="flex flex-col gap-3 text-base text-mist-700 list-decimal pl-6 marker:text-mist-500">
+          {conditions.map((m, i) => (
+            <li key={i} className="pl-2 text-pretty">{m}</li>
+          ))}
+        </ol>
         <Link
           href="https://github.com/debertjamie/debertjamie.com/issues"
-          className="text-blue-600 w-fit"
+          className="w-fit mt-2 rounded-full bg-mist-900 text-mist-50 px-6 py-3 text-base font-semibold transition-colors hover:bg-accent hover:text-accent-ink"
         >
-          {t("info.self.description")}
+          {t("info.cta")}
         </Link>
       </div>
-      <ul className="list-disc pl-6 space-y-1">
-        {conditions.map((m, i) => (
-          <li key={i}>{m}</li>
-        ))}
-      </ul>
-    </div>
+      <div className="md:col-span-6 min-w-0">
+        <CodeBlock value={code} />
+      </div>
+    </section>
   );
 }

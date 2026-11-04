@@ -19,22 +19,22 @@ export default function Loading() {
   const currentMessage = messages[messageIndex] ?? "Loading...";
 
   return (
-    <main className="flex flex-col flex-1 w-full justify-center items-center">
-      <div className="flex gap-x-0.5 items-center justify-center mb-4">
-        <div
-          className="w-5 h-5 bg-mist-800 rounded-sm shadow-sm animate-bounce"
-          style={{ animationDelay: "0ms" }}
-        />
-        <div
-          className="w-5 h-5 bg-mist-800 rounded-sm shadow-sm animate-bounce"
-          style={{ animationDelay: "150ms" }}
-        />
-        <div
-          className="w-5 h-5 bg-mist-800 rounded-sm shadow-sm animate-bounce"
-          style={{ animationDelay: "300ms" }}
-        />
+    <main
+      className="flex flex-col flex-1 justify-center gap-6 px-4 sm:px-8 py-32"
+      aria-busy="true"
+    >
+      <div className="flex gap-2" aria-hidden>
+        {[0, 150, 300].map((delay) => (
+          <span
+            key={delay}
+            className="size-3 rounded-full bg-mist-900 motion-safe:animate-pulse"
+            style={{ animationDelay: `${delay}ms` }}
+          />
+        ))}
       </div>
-      <p className="text-xl">{currentMessage}</p>
+      <p className="text-2xl sm:text-4xl font-semibold tracking-tight text-mist-700" role="status">
+        {currentMessage}
+      </p>
     </main>
   );
 }

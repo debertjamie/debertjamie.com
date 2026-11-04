@@ -2,6 +2,7 @@ import { ExtendedLink as Link } from "../commons/extendlink";
 import { Navbar } from "./nav";
 import { HEADER_LINKS } from "../commons/constants";
 import { MobileNav } from "./mobilenav";
+import { DarkModeToggle } from "../commons/dark-mode-toggle";
 
 export function Header() {
   return (
@@ -16,6 +17,7 @@ export function Header() {
       </Link>
       <div className="flex items-center gap-2">
         <Navbar links={HEADER_LINKS} />
+        <DarkModeToggle />
         <MobileNav links={HEADER_LINKS} />
       </div>
     </header>

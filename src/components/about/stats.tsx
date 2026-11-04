@@ -1,68 +1,55 @@
 import { type TFunction } from "i18next";
-import { Sparkles, Coffee } from "lucide-react";
 import { Suspense } from "react";
 import { Wakatime } from "./wakatime";
 import { Spotify } from "./spotify";
 import { AQI } from "./aqi";
 
-export async function Stats({
+function Skeleton({ className = "" }: { className?: string }) {
+  return <div className={`animate-pulse rounded-3xl bg-mist-200 ${className}`} aria-hidden />;
+}
+
+// Live data only: what is playing, the air outside, and where coding time goes.
+export function Stats({
   t,
   lang,
 }: {
   t: TFunction<"about", undefined>;
   lang: string;
 }) {
-  function consumedWater() {
-    return Math.floor((3 * new Date().getDate() * 1000) / 1000);
-  }
-
   return (
-    <div className="border-t border-mist-300 grid not-md:px-2 md:grid-cols-2 gap-4">
-      <div className="md:col-span-2">
-        <Suspense fallback={<div className="animate-pulse h-24 rounded-lg bg-mist-200" />}>
-          <Wakatime t={t} />
-        </Suspense>
-      </div>
-      <Spotify />
-      <div className="relative cursor-default overflow-hidden min-h-fit rounded-xl bg-mist-100 md:bg-mist-200 border border-mist-300 hover:border-mist-400 hover:bg-mist-100 transition-colors duration-300 group">
-        <div
-          aria-hidden
-          className="absolute select-none opacity-20 top-10 right-3 group-hover:-translate-y-1 group-hover:scale-105 transition-[opacity_transform] duration-300"
-        >
-          <Sparkles className="w-16 h-16 text-yellow-500" />
+    <>
+      <section className="grid gap-3 md:grid-cols-12 px-4 sm:px-8 py-20 md:py-28 border-t border-mist-300">
+        <h2 className="md:col-span-12 pb-7 text-4xl sm:text-5xl font-semibold tracking-tight">
+          {t("stats.title")}
+        </h2>
+        <div className="md:col-span-7">
+          <Spotify />
         </div>
-        <div className="not-md:opacity-100 relative h-8 bg-mist-50 border-b border-mist-400 duration-300 transition-all flex items-center justify-center px-4">
-          <div className="absolute left-4 flex items-center gap-x-2">
-            <div className="rounded-full bg-red-500 w-3 h-3" />
-            <div className="rounded-full bg-yellow-500 w-3 h-3" />
-            <div className="rounded-full bg-green-500 w-3 h-3" />
-          </div>
-          <p className="text-base font-semibold">Quote</p>
+        <div className="md:col-span-5">
+          <Suspense fallback={<Skeleton className="h-56" />}>
+            <AQI t={t} lang={lang} />
+          </Suspense>
         </div>
-        <div className="transition-opacity px-4 py-2 md:opacity-80 group-hover:opacity-100 duration-300">
-          <p className="text-xl tracking-wide">{t("stats.quote")}</p>
+        <div className="md:col-span-12">
+          <Suspense fallback={<Skeleton className="h-80" />}>
+            <Wakatime t={t} />
+          </Suspense>
         </div>
-      </div>
-      <div className="cursor-default rounded-xl border border-mist-300 p-4 group">
-        <div className="w-10 h-10 rounded-lg bg-sky-400 transition-transform group-hover:-translate-y-1 duration-300 flex items-center justify-center">
-          <Coffee className="w-6 h-6 text-mist-50" />
-        </div>
-        <div className="flex flex-col justify-between gap-y-2">
-          <div className="flex flex-col">
-            <p className="font-semibold">{t("stats.water.header")}</p>
-            <p className="text-sm">{t("stats.water.description")}</p>
-          </div>
-          <p className="pl-3 transition-transform group-hover:scale-105 duration-300">
-            <span className="text-5xl font-semibold">{consumedWater()}</span>{" "}
-            {t("stats.water.total")}
+      </section>
+
+      <section className="px-4 sm:px-8 py-24 md:py-32 border-t border-mist-300">
+        <blockquote className="relative max-w-5xl">
+          <span
+            className="absolute -top-10 -left-1 text-8xl leading-none font-semibold text-accent-mark select-none"
+            aria-hidden
+          >
+            &ldquo;
+          </span>
+          <p className="pt-8 text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight leading-tight text-pretty">
+            {t("stats.quote")}
           </p>
-        </div>
-      </div>
-      <div className="h-full">
-        <Suspense fallback={<div className="animate-pulse h-24 rounded-lg bg-mist-200" />}>
-          <AQI t={t} lang={lang} />
-        </Suspense>
-      </div>
-    </div>
+        </blockquote>
+      </section>
+    </>
   );
 }

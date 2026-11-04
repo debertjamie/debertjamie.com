@@ -1,9 +1,11 @@
+import { alternates } from "@/src/lib/seo";
 import { getT } from "@/src/lib/i18n-server";
 import type { Metadata } from "next";
 import { Email } from "@/src/components/contact/email";
 import { EmailForm } from "@/src/components/contact/form";
 import { Grid } from "@/src/components/contact/grid";
-import { RevealSection } from "@/src/components/commons/reveal";
+import { Reveal } from "@/src/components/commons/reveal";
+import { PageHeader } from "@/src/components/commons/page-header";
 
 export async function generateMetadata({
   params,
@@ -17,6 +19,7 @@ export async function generateMetadata({
   ogImage.searchParams.set("description", t("metadata.description"));
 
   return {
+    alternates: alternates(lang, "/contact"),
     title: t("metadata.title"),
     description: t("metadata.description"),
     openGraph: {
@@ -55,18 +58,17 @@ export default async function Contact({ params }: PageProps<"/[lang]/contact">) 
   const { t } = await getT("contact", { lng: lang });
 
   return (
-    <main className="flex flex-col">
-      <section className="flex flex-col gap-y-2 border-y border-mist-300 py-10 md:py-20 px-8">
-        <h1 className="text-5xl">{t("header.title")}</h1>
-        <span>{t("header.description")}</span>
-      </section>
-      <RevealSection>
-        <Email />
-      </RevealSection>
-      <RevealSection className="grid md:grid-cols-2 gap-2 mt-2">
-        <EmailForm />
-        <Grid />
-      </RevealSection>
+    <main className="flex flex-col pb-16">
+      <PageHeader title={t("header.title")} description={t("header.description")} />
+      <Email />
+      <Reveal className="grid gap-16 md:grid-cols-12 px-4 sm:px-8 py-16 md:py-24">
+        <div className="md:col-span-7">
+          <EmailForm />
+        </div>
+        <div className="md:col-span-4 md:col-start-9">
+          <Grid title={t("elsewhere.title")} wechatHandle={t("elsewhere.wechat")} />
+        </div>
+      </Reveal>
     </main>
   );
 }

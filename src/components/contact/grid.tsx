@@ -1,41 +1,45 @@
-import { ExternalLink } from "lucide-react";
+import type { ComponentType, SVGProps } from "react";
+import { ArrowUpRight } from "lucide-react";
 import { ExtendedLink as Link } from "../commons/extendlink";
 import { GitHub, LinkedIn, Twitter, WeChat } from "../commons/icons";
 
-export function Grid() {
+const channels: {
+  name: string;
+  handle: string;
+  href: string;
+  Icon: ComponentType<SVGProps<SVGSVGElement>>;
+}[] = [
+  { name: "GitHub", handle: "debertjamie", href: "https://github.com/debertjamie", Icon: GitHub },
+  { name: "LinkedIn", handle: "in/debertjamie", href: "https://linkedin.com/in/debertjamie", Icon: LinkedIn },
+  { name: "Twitter", handle: "@debertjamie", href: "https://twitter.com/debertjamie", Icon: Twitter },
+  { name: "WeChat", handle: "", href: "/wechat", Icon: WeChat },
+];
+
+// Other channels as a plain list: name and handle, so people know which
+// account they are opening before they click.
+export function Grid({ title, wechatHandle }: { title: string; wechatHandle: string }) {
   return (
-    <section className="grid grid-cols-2 gap-2 *:min-h-30">
-      <Link
-        href="https://github.com/debertjamie"
-        className="border md:border-mist-400 relative rounded-xl p-4 flex flex-col justify-center gap-2 not-md:bg-gray-800 not-md:border-gray-800 not-md:text-mist-50 md:duration-300 md:transition-colors md:hover:bg-gray-800 md:hover:border-gray-800 md:hover:text-mist-50"
-      >
-        <GitHub className="h-8 w-8" />
-        <span>GitHub</span>
-        <ExternalLink className="absolute right-4 top-4" />
-      </Link>
-      <Link
-        href="https://linkedin.com/in/debertjamie"
-        className="border md:border-mist-400 relative rounded-xl p-4 flex flex-col justify-center gap-2 not-md:bg-blue-600 not-md:border-blue-600 not-md:text-mist-50 md:duration-300 md:transition-colors md:hover:bg-blue-600 md:hover:border-blue-600 md:hover:text-mist-50"
-      >
-        <LinkedIn className="h-8 w-8" />
-        <span>LinkedIn</span>
-        <ExternalLink className="absolute right-4 top-4" />
-      </Link>
-      <Link
-        href="https://twitter.com/debertjamie"
-        className="border md:border-mist-400 relative rounded-xl p-4 flex flex-col justify-center gap-2 not-md:bg-neutral-900 not-md:border-neutral-900 not-md:text-mist-50 md:duration-300 md:transition-colors md:hover:bg-neutral-900 md:hover:border-neutral-900 md:hover:text-mist-50"
-      >
-        <Twitter className="h-8 w-8" />
-        <span>Twitter</span>
-        <ExternalLink className="absolute right-4 top-4" />
-      </Link>
-      <Link
-        href="/wechat"
-        className="border md:border-mist-400 relative rounded-xl p-4 flex flex-col justify-center gap-2 not-md:bg-green-600 not-md:border-green-600 not-md:text-mist-50 md:duration-300 md:transition-colors md:hover:bg-green-600 md:hover:border-green-600 md:hover:text-mist-50"
-      >
-        <WeChat className="h-8 w-8" />
-        <span>WeChat</span>
-      </Link>
+    <section className="flex flex-col gap-8">
+      <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">{title}</h2>
+      <ul className="flex flex-col border-t border-mist-300">
+        {channels.map(({ name, handle, href, Icon }) => (
+          <li key={name} className="border-b border-mist-300">
+            <Link href={href} className="group flex items-center gap-4 py-5">
+              <Icon className="size-7 shrink-0" aria-hidden />
+              <span className="flex flex-col">
+                <span className="text-xl font-semibold transition-colors group-hover:text-accent-text">
+                  {name}
+                </span>
+                <span className="text-base text-mist-600">{handle || wechatHandle}</span>
+              </span>
+              <ArrowUpRight
+                className="ml-auto size-6 text-mist-500 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-mist-900"
+                aria-hidden
+              />
+            </Link>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

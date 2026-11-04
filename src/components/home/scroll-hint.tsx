@@ -28,7 +28,7 @@ export function ScrollHint({ label }: { label: string }) {
                   y: [0, 6, 0, 0],
                   transition: {
                     duration: 2,
-                    repeat: Infinity,
+                    repeat: 1,
                     ease: "easeInOut",
                   },
                 }

@@ -1,8 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 
-// Renders the current time in Asia/Jakarta, updated every second.
-// Kept as a tiny client component so the parent Hero can stay lean.
 export function LiveClock() {
   const [time, setTime] = useState<string>("");
 
@@ -21,7 +19,6 @@ export function LiveClock() {
     return () => clearInterval(id);
   }, []);
 
-  // Render a fixed-width placeholder during SSR / before mount
   if (!time) {
     return (
       <span className="inline-block w-16 h-4 rounded bg-mist-300 animate-pulse" />

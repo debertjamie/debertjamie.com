@@ -7,7 +7,9 @@
     "title": "友链",
     "description": "许多朋友让生活更加多彩！你可以在GitHub仓库中提出一个issue来请求交换友链。"
   },
+  "empty": "暂无友链。",
   "info": {
+    "cta": "在 GitHub 上提交 issue",
     "title": "让我们成为朋友吧！",
     "self": {
       "title": "友链交换信息",

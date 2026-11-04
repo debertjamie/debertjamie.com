@@ -2,7 +2,8 @@
 import { useT } from "next-i18next/client";
 import { useCallback, useEffect, useRef } from "react";
 import createGlobe, { type Globe } from "cobe";
-import { MapPin } from "lucide-react";
+import { useTheme } from "next-themes";
+import { LiveClock } from "./live-clock";
 
 const clamp = (value: number, min: number, max: number) =>
   Math.min(Math.max(value, min), max);
@@ -21,6 +22,7 @@ const southeastAsiaMarkers: Array<{
 
 export function Globe() {
   const { t } = useT("home");
+  const isDark = useTheme().resolvedTheme === "dark";
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const globeRef = useRef<Globe | null>(null);
   const dragStartRef = useRef<{
@@ -97,7 +99,7 @@ export function Globe() {
       mapSamples: 18000,
       mapBrightness: 1.4,
       baseColor: [0.96, 0.98, 1],
-      markerColor: [0.2, 0.2, 0.2],
+      markerColor: [0.396, 0.639, 0.051],
       glowColor: [0.8, 0.8, 0.8],
       offset: [0.08, -0.06],
       markerElevation: 0.01,
@@ -146,12 +148,24 @@ export function Globe() {
     };
   }, []);
 
+  // Keep the globe readable in both themes instead of a white ball on dark.
+  useEffect(() => {
+    globeRef.current?.update(
+      isDark
+        ? { dark: 1, baseColor: [0.35, 0.37, 0.4], glowColor: [0.12, 0.13, 0.15], mapBrightness: 5, markerColor: [0.639, 0.902, 0.208] }
+        : { dark: 0, baseColor: [0.96, 0.98, 1], glowColor: [0.8, 0.8, 0.8], mapBrightness: 1.4, markerColor: [0.396, 0.639, 0.051] },
+    );
+  }, [isDark]);
+
   return (
     <div className="flex w-full flex-col gap-4 px-2 sm:px-4 pt-4">
-      <div className="z-20 flex items-center gap-2 text-base">
-        <MapPin className="h-4 w-4" strokeWidth={2} />
-        <span className="font-medium tracking-wide">
+      <div className="z-20 flex items-center justify-between gap-2 text-base">
+        <h2 className="flex items-center gap-2 font-medium text-mist-600">
+          <span className="inline-block size-2.5 rounded-full bg-current" aria-hidden />
           {t("grid.globe_name")}
+        </h2>
+        <span className="text-sm text-mist-600 tabular-nums">
+          UTC+07:00 · <LiveClock />
         </span>
       </div>
 

@@ -7,6 +7,8 @@
     "title": "About Me",
     "description": "Hi! I'm Debert Jamie, an undergraduate student at Universitas Gadjah Mada with interests in software engineering, machine learning, and technology. I enjoy exploring new ideas, learning new skills, and contributing to the tech community." 
   },
+  "scrapbook_title": "a little about me",
+  "scrapbook_hint": "Drag the stickers around. Hover or focus one to read its story.",
   "scrapbook": {
     "discord": "One of my first programming projects was a simple Discord bot that I created in my free time. It helped me understand the basics of programming, databases, and APIs.",
     "psychology": "During high school, I was interested in psychology and human behavior. I was fascinated by how people think and behave in different situations. Although I ended up not pursuing psychology as a career, I still find it interesting and like to read about it.",
@@ -63,24 +65,18 @@
     }
   },
   "stats": {
+    "title": "Right now",
     "wakatime": {
-      "time": "Total Coding Time",
-      "average": "Average Coding Time",
-      "hours": "hours",
-      "editors": "Used Editors",
-      "languages": "Used Languages"
+      "languages": "Used Languages",
+      "empty": "Coding stats are unavailable right now."
     },
     "spotify": {
+      "title": "Listening to",
       "error": "An error occured while fetching tracks. Please try again later.",
       "noTracks": {
         "header": "Seems quiet in here...",
         "description": "No songs playing currently."
       }
-    },
-    "water": {
-      "header": "Water Consumed",
-      "description": "Total water consumed this month. Don't forget to stay hydrated!",
-      "total": "L"
     },
     "aqi": {
       "header": "Air Quality Index - Yogyakarta",

@@ -45,6 +45,7 @@ export function StackImage({
         fill
         className="pointer-events-none object-cover"
         sizes="(max-width: 768px) 100vw, 300px"
+        unoptimized
         loading={loading}
       />
     </Draggable>

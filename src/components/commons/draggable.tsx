@@ -4,11 +4,15 @@ import {
   useRef,
   useState,
   type CSSProperties,
+  type HTMLAttributes,
   type PointerEvent,
   type ReactNode,
 } from "react";
 
-type DraggableProps = {
+type DraggableProps = Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "onPointerDown" | "onPointerMove" | "onPointerUp" | "onPointerCancel"
+> & {
   children: ReactNode;
   initialRotation?: number;
   initialX?: number;
@@ -26,6 +30,7 @@ export function Draggable({
   baseZIndex = 1,
   className = "",
   style,
+  ...rest
 }: DraggableProps) {
   const [dragDelta, setDragDelta] = useState({ x: 0, y: 0 });
   const [position, setPosition] = useState({ x: initialX, y: initialY });
@@ -58,6 +63,7 @@ export function Draggable({
 
   return (
     <div
+      {...rest}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}

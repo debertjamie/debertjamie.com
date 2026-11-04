@@ -1,13 +1,14 @@
 import { type TFunction } from "i18next";
 import { getAQI } from "@/src/lib/aqi";
 
-const colorMapping: Record<string, string> = {
-  good: "border-green-300 bg-green-100",
-  moderate: "border-yellow-300 bg-yellow-100",
-  sensitive: "border-orange-300 bg-orange-100",
-  unhealthy: "border-red-300 bg-red-100",
-  very_unhealthy: "border-purple-300 bg-purple-100",
-  hazardous: "border-black bg-gray-100",
+// Standard AQI band colors: they encode the reading, so they stay as-is.
+const bandColor: Record<string, string> = {
+  good: "bg-green-500",
+  moderate: "bg-yellow-400",
+  sensitive: "bg-orange-500",
+  unhealthy: "bg-red-500",
+  very_unhealthy: "bg-purple-500",
+  hazardous: "bg-rose-900",
 };
 
 export async function AQI({
@@ -17,45 +18,36 @@ export async function AQI({
   t: TFunction<"about", undefined>;
   lang: string;
 }) {
-  const data = await getAQI();
-  lang = lang === "en" ? "en-GB" : lang;
-  const color =
-    data.status === "success"
-      ? colorMapping[data.data.classification]
-      : "border-yellow-300 bg-yellow-100";
+  const data = await getAQI().catch(() => ({ status: "fail" as const }));
+  const locale = lang === "en" ? "en-GB" : lang;
 
   return (
-    <div
-      className={`h-full not-md:min-h-40 cursor-default p-4 rounded-xl border flex flex-col group ${color}`}
-    >
-      <p className="font-semibold">{t("stats.aqi.header")}</p>
-      <div className="mx-auto text-center py-2">
-        {data.status === "success" ? (
-          <>
-            <p className="text-5xl font-bold group-hover:scale-110 duration-300 transition-transform">
-              {data.data.current.pollution.aqius}
-            </p>
-            <p className="text-base">
-              {t(`stats.aqi.classification.${data.data.classification}`)}
-            </p>
-          </>
-        ) : (
-          <p className="text-5xl font-bold">{t("stats.aqi.unknown")}</p>
-        )}
-      </div>
-      {data.status === "success" && (
-        <p className="text-sm mt-auto">
-          {t("stats.aqi.updated")}:{" "}
-          <span className="font-semibold">
-            {new Date(data.data.current.pollution.ts).toLocaleString(lang, {
+    <div className="h-full min-h-56 rounded-3xl border border-mist-300 p-6 flex flex-col gap-4">
+      <p className="text-base font-medium text-mist-600">{t("stats.aqi.header")}</p>
+      {data.status === "success" ? (
+        <>
+          <p className="text-7xl font-semibold tracking-tight tabular-nums">
+            {data.data.current.pollution.aqius}
+          </p>
+          <p className="flex items-center gap-2 text-lg font-medium">
+            <span
+              className={`size-3 rounded-full ${bandColor[data.data.classification]}`}
+              aria-hidden
+            />
+            {t(`stats.aqi.classification.${data.data.classification}`)}
+          </p>
+          <p className="mt-auto text-sm text-mist-600">
+            {t("stats.aqi.updated")}:{" "}
+            {new Date(data.data.current.pollution.ts).toLocaleString(locale, {
               month: "long",
               day: "numeric",
-              year: "numeric",
               hour: "numeric",
               minute: "2-digit",
             })}
-          </span>
-        </p>
+          </p>
+        </>
+      ) : (
+        <p className="text-3xl font-semibold text-mist-600">{t("stats.aqi.unknown")}</p>
       )}
     </div>
   );

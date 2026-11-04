@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+/* Home accent (lime). Change the accent here only.
+   accent:      solid surfaces (contact block, CTA hover)
+   accent-ink:  text placed on accent surfaces
+   accent-mark: small marks (dots, globe pin); darker in light mode so it shows on near-white
+   accent-text: hover text and underlines; lime-700 in light mode for AA contrast */
+@theme {
+    --color-accent: oklch(84.1% 0.238 128.85);
+    --color-accent-hover: oklch(89.7% 0.196 126.665);
+    --color-accent-ink: oklch(27.4% 0.072 132.109);
+    --color-accent-mark: oklch(64.8% 0.2 131.684);
+    --color-accent-text: oklch(53.2% 0.157 131.589);
+}
+
 * {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -11,6 +24,24 @@
 
 .font-semibold:lang(zh-CN) {
     font-weight: 700;
+}
+
+/* Dark mode overrides — Tailwind v4 reads @theme tokens from :root,
+   so we override the same custom properties inside .dark to flip all
+   mist-* utilities to their dark equivalents without touching any JSX. */
+.dark {
+    --color-mist-50: oklch(0.13 0.01 250);
+    --color-mist-100: oklch(0.18 0.01 250);
+    --color-mist-200: oklch(0.22 0.012 250);
+    --color-mist-300: oklch(0.28 0.012 250);
+    --color-mist-400: oklch(0.38 0.01 250);
+    --color-mist-500: oklch(0.55 0.01 250);
+    --color-mist-600: oklch(0.70 0.008 250);
+    --color-mist-700: oklch(0.80 0.006 250);
+    --color-mist-800: oklch(0.90 0.004 250);
+    --color-mist-900: oklch(0.97 0.003 250);
+    --color-accent-mark: oklch(84.1% 0.238 128.85);
+    --color-accent-text: oklch(84.1% 0.238 128.85);
 }
 
 @keyframes shimmer {
@@ -25,4 +56,15 @@
 
 .animate-shimmer {
     animation: shimmer 2s infinite;
+}
+
+@layer base {
+    button:not(:disabled),
+    [role="button"],
+    summary {
+        cursor: pointer;
+    }
+    button:disabled {
+        cursor: not-allowed;
+    }
 }

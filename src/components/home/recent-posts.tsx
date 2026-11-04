@@ -1,13 +1,11 @@
 import type { TFunction } from "i18next";
-import { ArrowUpRight } from "lucide-react";
 import { sanityFetch } from "@/src/lib/sanity/client";
 import { postsQuery } from "@/src/lib/sanity/query";
 import type { PostType } from "@/src/lib/blog";
 import { formatDate } from "@/src/lib/blog";
 import { ExtendedLink as Link } from "../commons/extendlink";
 
-// Fetches the two most recent published posts from Sanity.
-// This is an async Server Component — no client boundary needed here.
+// Latest published post. Sanity errors degrade to the empty state.
 export async function RecentPosts({
   t,
   locale,
@@ -22,33 +20,28 @@ export async function RecentPosts({
       query: postsQuery,
       tags: ["posts"],
     });
-    // postsQuery already filters isPublished == true; just cap to 2
-    posts = all.slice(0, 2);
+    posts = all.slice(0, 1);
   } catch {
-    // Gracefully degrade — show empty state on Sanity errors
     posts = [];
   }
 
   return (
-    <div className="border shadow-md rounded-3xl border-mist-400 p-4 flex flex-col gap-3 h-full">
-      <h2 className="text-base font-semibold">{t("grid.recent_posts_title")}</h2>
-
+    <div className="flex flex-col gap-3">
+      <h3 className="text-sm font-medium text-mist-600">{t("grid.recent_posts_title")}</h3>
       {posts.length === 0 ? (
-        <p className="text-sm text-mist-500 dark:text-mist-500 flex-1">
-          {t("grid.recent_posts_empty")}
-        </p>
+        <p>{t("grid.recent_posts_empty")}</p>
       ) : (
-        <ul className="flex flex-col gap-3 flex-1">
+        <ul className="flex flex-col divide-y divide-mist-300">
           {posts.map((post) => (
             <li key={post._id}>
               <Link
                 href={`/blog/${post.slug}`}
-                className="group flex flex-col gap-0.5 hover:text-mist-600 dark:hover:text-mist-500 transition-colors"
+                className="flex items-baseline justify-between gap-4 py-2 hover:text-mist-900"
               >
-                <span className="text-sm font-medium leading-snug line-clamp-2 group-hover:underline">
+                <span className="font-medium line-clamp-2 underline-offset-4 hover:underline">
                   {post.title}
                 </span>
-                <span className="text-xs text-mist-500 dark:text-mist-500">
+                <span className="text-sm text-mist-600 shrink-0 tabular-nums">
                   {formatDate(post.date ?? post._createdAt, locale)}
                 </span>
               </Link>
@@ -56,14 +49,6 @@ export async function RecentPosts({
           ))}
         </ul>
       )}
-
-      <Link
-        href="/blog"
-        className="flex items-center gap-1 text-sm font-medium border-b border-current w-fit leading-tight"
-      >
-        {t("grid.recent_posts_all")}
-        <ArrowUpRight className="w-4 h-4" aria-hidden />
-      </Link>
     </div>
   );
 }

@@ -1,7 +1,7 @@
+import { alternates } from "@/src/lib/seo";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { Calendar, Clock, User } from "lucide-react";
 import { singlePostQuery } from "@/src/lib/sanity/query";
 import { sanityFetch } from "@/src/lib/sanity/client";
 import {
@@ -33,6 +33,7 @@ export async function generateMetadata({
   ogImage.searchParams.set("description", post.description);
 
   return {
+    alternates: alternates(lang, `/blog/${slug}`),
     title: post.title,
     description: post.description,
     keywords: post.tags.map((t) => t.tag),
@@ -42,7 +43,7 @@ export async function generateMetadata({
       url: `https://debertjamie.com/${lang}/blog/${post.slug}`,
       authors: post.author.name,
       tags: post.tags.map((t) => t.tag),
-      publishedTime: post._createdAt,
+      publishedTime: post.date || post._createdAt,
       modifiedTime: post._updatedAt || "",
       images: [
         {
@@ -91,39 +92,50 @@ export default async function PostPage({
   }
 
   return (
-    <main className="relative flex flex-col overflow-hidden">
-      <section className="relative flex flex-col md:h-[calc(100vh-3.5rem)] overflow-hidden">
-        <div className="absolute h-72 w-full md:h-[calc(100vh-3.5rem)]">
+    <main className="flex flex-col pb-24">
+      <header className="flex flex-col gap-6 px-4 sm:px-8 pt-16 pb-10 md:pt-24 max-w-5xl">
+        {post.tags?.length > 0 && (
+          <p className="flex flex-wrap gap-x-3 text-base font-medium text-mist-600">
+            {post.tags.map((tag) => (
+              <span key={tag.slug}>#{tag.tag}</span>
+            ))}
+          </p>
+        )}
+        <h1 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold tracking-tighter leading-[1.02] text-balance">
+          {post.title}
+        </h1>
+        {post.description && (
+          <p className="text-xl sm:text-2xl leading-snug text-mist-700 text-pretty max-w-3xl">
+            {post.description}
+          </p>
+        )}
+        <p className="flex flex-wrap gap-x-3 gap-y-1 text-base text-mist-600">
+          <span>{post.author.name}</span>
+          <span aria-hidden>·</span>
+          <time dateTime={post.date || post._createdAt}>
+            {formatDate(post.date || post._createdAt, lang)}
+          </time>
+          <span aria-hidden>·</span>
+          <span>{readTime(toPlainText(post.body))}</span>
+        </p>
+      </header>
+      <div className="px-4 sm:px-8">
+        <div className="relative aspect-video max-h-[70vh] w-full overflow-hidden rounded-3xl bg-mist-200">
           <Image
             src={post.mainImage.image}
-            alt={post.mainImage.alt || post.title}
+            alt={post.mainImage.alt || ""}
             placeholder={post.mainImage.lqip ? "blur" : "empty"}
             blurDataURL={post.mainImage.lqip || ""}
-            width={2400}
-            height={300}
+            fill
+            sizes="100vw"
             loading="eager"
-            className="select-none pointer-events-none inset-0 h-full w-full object-bottom object-cover mask-[linear-gradient(to_bottom,black_0%,black_48%,transparent_100%)]"
+            fetchPriority="high"
+            className="object-cover"
           />
         </div>
-        <Reveal className="mt-auto z-50 px-8 pb-12 pt-4 not-md:pt-72">
-          <h1 className="text-5xl">{post.title}</h1>
-          <div className="flex gap-x-2 md:gap-x-8 text-base">
-            <span className="flex items-center gap-x-1">
-              <Calendar className="w-4 h-4" />
-              {formatDate(post._createdAt, lang)}
-            </span>
-            <span className="flex items-center gap-x-1">
-              <Clock className="w-4 h-4" />
-              {readTime(toPlainText(post.body))}
-            </span>
-            <span className="flex items-center gap-x-1">
-              <User className="w-4 h-4" />
-              {post.author.name}
-            </span>
-          </div>
-        </Reveal>
-      </section>
-      <article className="px-8 py-4 border-t border-mist-300">
+      </div>
+      <article className="px-4 sm:px-8 pt-16">
+        <div className="mx-auto max-w-3xl">
         {/* The body can be far taller than the viewport. The default
             `amount: 0.15` reveal threshold can never be met for a very long
             element (15% of its own height never fits on screen at once), so it
@@ -132,6 +144,7 @@ export default async function PostPage({
         <Reveal viewport={{ once: true, amount: "some" }}>
           <PortableTextRenderer value={post.body} />
         </Reveal>
+        </div>
       </article>
     </main>
   );

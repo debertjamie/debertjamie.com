@@ -1,6 +1,7 @@
+import { alternates } from "@/src/lib/seo";
 import { getT } from "@/src/lib/i18n-server";
 import type { Metadata } from "next";
-import { RevealSection } from "@/src/components/commons/reveal";
+import { PageHeader } from "@/src/components/commons/page-header";
 
 export async function generateMetadata({
   params,
@@ -14,6 +15,7 @@ export async function generateMetadata({
   ogImage.searchParams.set("description", t("metadata.description"));
 
   return {
+    alternates: alternates(lang, "/privacy"),
     title: t("metadata.title"),
     description: t("metadata.description"),
     openGraph: {
@@ -70,22 +72,52 @@ export default async function Privacy({
   const { t } = await getT("privacy", { lng: lang });
 
   return (
-    <main className="flex flex-col">
-      <section className="flex flex-col gap-y-2 border-b border-mist-300 py-10 md:py-20 px-8">
-        <h1 className="text-5xl">{t("header.title")}</h1>
-        <span>{t("header.updated")}</span>
-        <span>{t("header.description")}</span>
-      </section>
-      <RevealSection className="flex flex-col gap-y-6 px-8 py-8 max-w-2xl">
-        {SECTION_KEYS.map((key) => (
-          <div key={key} className="space-y-1">
-            <h2 className="text-xl font-semibold">
-              {t(`sections.${key}.title`)}
-            </h2>
-            <p className="leading-relaxed">{t(`sections.${key}.body`)}</p>
-          </div>
-        ))}
-      </RevealSection>
+    <main className="flex flex-col pb-16">
+      <PageHeader title={t("header.title")} description={t("header.description")}>
+        <p className="text-lg font-medium text-mist-700">{t("header.updated")}</p>
+      </PageHeader>
+      <div className="grid gap-12 md:grid-cols-12 px-4 sm:px-8 py-16 border-t border-mist-300">
+        {/* Long policy text: a sticky contents list lets people jump to the part they care about. */}
+        <nav aria-labelledby="privacy-contents" className="md:col-span-4 md:sticky md:top-8 self-start">
+          <h2 id="privacy-contents" className="pb-4 text-base font-medium text-mist-600">
+            {t("contents")}
+          </h2>
+          <ol className="flex flex-col gap-1 text-base">
+            {SECTION_KEYS.map((key, i) => (
+              <li key={key}>
+                <a
+                  href={`#${key}`}
+                  className="flex gap-3 py-1.5 text-mist-700 transition-colors hover:text-mist-900"
+                >
+                  <span className="w-6 shrink-0 tabular-nums text-mist-500">{i + 1}</span>
+                  {t(`sections.${key}.title`)}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+        <div className="md:col-span-8 flex flex-col">
+          {SECTION_KEYS.map((key, i) => (
+            <section
+              key={key}
+              id={key}
+              className="scroll-mt-8 grid gap-3 sm:grid-cols-[3rem_1fr] py-8 border-b border-mist-300 first:pt-0 last:border-b-0"
+            >
+              <span className="text-2xl font-semibold tabular-nums text-mist-500" aria-hidden>
+                {i + 1}
+              </span>
+              <div className="flex flex-col gap-3">
+                <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+                  {t(`sections.${key}.title`)}
+                </h2>
+                <p className="text-lg leading-relaxed text-mist-700 max-w-prose">
+                  {t(`sections.${key}.body`)}
+                </p>
+              </div>
+            </section>
+          ))}
+        </div>
+      </div>
     </main>
   );
 }

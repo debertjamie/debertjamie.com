@@ -1,12 +1,12 @@
+import { alternates } from "@/src/lib/seo";
 import { getT } from "@/src/lib/i18n-server";
 import type { Metadata } from "next";
-import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import type { ComponentProps } from "react";
 import { nowQuery } from "@/src/lib/sanity/query";
 import { sanityFetch } from "@/src/lib/sanity/client";
 import { PortableTextRenderer } from "@/src/components/sanity/portableText";
-import { Reveal, RevealSection } from "@/src/components/commons/reveal";
+import { PageHeader } from "@/src/components/commons/page-header";
 
 type NowData = {
   _updatedAt: string;
@@ -33,6 +33,7 @@ export async function generateMetadata({
   ogImage.searchParams.set("description", t("metadata.description"));
 
   return {
+    alternates: alternates(lang, "/now"),
     title: t("metadata.title"),
     description: t("metadata.description"),
     openGraph: {
@@ -75,31 +76,19 @@ export default async function Now({ params }: PageProps<"/[lang]/now">) {
   });
 
   return (
-    <main className="flex flex-col">
-      <section className="relative flex flex-col md:h-[calc(100vh-3.5rem)] overflow-hidden">
-        <div className="absolute h-72 w-full md:h-[calc(100vh-3.5rem)]">
-          <Image
-            src="https://images.unsplash.com/photo-1462642109801-4ac2971a3a51?q=80&w=2400"
-            alt="Now"
-            width={2400}
-            height={300}
-            loading="eager"
-            className="select-none pointer-events-none inset-0 h-full w-full object-cover mask-[linear-gradient(to_bottom,black_0%,black_48%,transparent_100%)]"
-          />
-        </div>
-        <Reveal className="mt-auto z-10 px-8 pb-12 pt-4 not-md:pt-72">
-          <h1 className="text-5xl">{t("hero.title")}</h1>
-          <p>{t("hero.description")}</p>
-        </Reveal>
-      </section>
-      <RevealSection className="flex flex-col gap-y-4 px-8 py-4 border-t border-mist-300">
-        <div>
-          <PortableTextRenderer value={nowData.content} />
-        </div>
-        <p className="text-base font-semibold text-steel-grey/80 dark:text-porcelain/80">
+    <main className="flex flex-col pb-16">
+      <PageHeader title={t("hero.title")} description={t("hero.description")}>
+        {/* A now page is only useful if it is fresh, so the date sits up top. */}
+        <p className="flex items-center gap-2 text-lg font-medium text-mist-700">
+          <span className="size-2.5 rounded-full bg-accent-mark" aria-hidden />
           {t("lastUpdated", { date: formatDate(nowData._updatedAt, lang) })}
         </p>
-      </RevealSection>
+      </PageHeader>
+      <section className="px-4 sm:px-8 py-16 border-t border-mist-300">
+        <div className="max-w-3xl md:ml-[calc(100%/12*4)]">
+          <PortableTextRenderer value={nowData.content} />
+        </div>
+      </section>
     </main>
   );
 }
