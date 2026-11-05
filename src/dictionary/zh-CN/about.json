@@ -70,6 +70,12 @@
       "languages": "使用过的编程语言",
       "empty": "暂时无法获取编程统计。"
     },
+    "github": {
+      "title": "GitHub 贡献",
+      "total": "过去一年 {{count}} 次",
+      "day": "{{date}}：{{count}} 次",
+      "empty": "暂时无法获取 GitHub 统计。"
+    },
     "spotify": {
       "title": "正在听",
       "error": "获取曲目时发生错误。请稍后重试。",

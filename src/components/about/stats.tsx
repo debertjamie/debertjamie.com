@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { Wakatime } from "./wakatime";
 import { Spotify } from "./spotify";
 import { AQI } from "./aqi";
+import { GitHub } from "./github";
 
 function Skeleton({ className = "" }: { className?: string }) {
   return <div className={`animate-pulse rounded-3xl bg-mist-200 ${className}`} aria-hidden />;
@@ -33,6 +34,11 @@ export function Stats({
         <div className="md:col-span-12">
           <Suspense fallback={<Skeleton className="h-80" />}>
             <Wakatime t={t} />
+          </Suspense>
+        </div>
+        <div className="md:col-span-12">
+          <Suspense fallback={<Skeleton className="h-48" />}>
+            <GitHub t={t} lang={lang} />
           </Suspense>
         </div>
       </section>

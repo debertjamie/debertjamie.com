@@ -26,3 +26,5 @@ export const R2BucketName = process.env.R2_BUCKET_NAME;
 export const R2PublicUrl = process.env.NEXT_PUBLIC_R2_PUBLIC_URL;
 
 export const clerkId = process.env.CLERK_USER_ID;
+
+export const githubToken = process.env.GITHUB_TOKEN;

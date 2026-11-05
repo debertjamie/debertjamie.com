@@ -70,6 +70,12 @@
       "languages": "Used Languages",
       "empty": "Coding stats are unavailable right now."
     },
+    "github": {
+      "title": "GitHub Contributions",
+      "total": "{{count}} in the last year",
+      "day": "{{count}} on {{date}}",
+      "empty": "GitHub stats are unavailable right now."
+    },
     "spotify": {
       "title": "Listening to",
       "error": "An error occured while fetching tracks. Please try again later.",
