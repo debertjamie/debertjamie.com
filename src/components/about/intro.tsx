@@ -19,7 +19,10 @@ export function Intro({ t }: { t: TFunction<"about", undefined> }) {
     <section className="grid gap-16 md:grid-cols-12 md:items-center px-4 sm:px-8 pt-16 pb-24 md:pt-24 md:pb-32">
       <div className="md:col-span-7 flex flex-col gap-8">
         <h1 className="flex flex-col gap-4 break-keep">
-          <span className="text-xl sm:text-2xl font-medium text-mist-600">Ta̍k-ke-hó!</span>
+          <span className="flex flex-col gap-1 text-xl sm:text-2xl font-medium text-mist-600">
+            <span>Ta̍k-ke-hó, tsin huann-hí kah lí si̍k-sāi!</span>
+            <span className="tracking-[0.25em]">大家好，真歡喜佮你熟似！</span>
+          </span>
           <span className="text-[clamp(2.75rem,8vw,7rem)] font-semibold tracking-tighter leading-[0.95] text-balance">
             {t("header.title")}
           </span>
