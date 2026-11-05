@@ -29,7 +29,7 @@ export const CustomPortableTextComponents: PortableTextComponents = {
     table: TableComponent,
   },
   marks: {
-    link: ({ value, children }) => <Link href={value}>{children}</Link>,
+    link: ({ value, children }) => <Link href={value?.href ?? "#"}>{children}</Link>,
     em: ({ children }) => <em className="italic">{children}</em>,
     strong: ({ children }) => (
       <strong className="font-semibold">{children}</strong>
