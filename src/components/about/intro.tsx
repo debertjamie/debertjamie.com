@@ -34,12 +34,12 @@ export function Intro({ t }: { t: TFunction<"about", undefined> }) {
           <TextLink href="/now">{t("links.now")}</TextLink>
           <TextLink href="/projects">{t("links.projects")}</TextLink>
           <a
-            href="/CV_Debert_Jamie_Chanderson.pdf"
+            href="https://drive.google.com/file/d/1BFeDRuwmBnkxIqzXwUrP_6oYO_JO_izs/view?usp=sharing"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             className={linkClass}
           >
-            {t("links.cv")} (PDF)
+            {t("links.cv")}
           </a>
         </div>
       </div>
