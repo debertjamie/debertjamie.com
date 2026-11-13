@@ -45,7 +45,7 @@ export function Hero() {
 
   return (
     <section className="relative min-h-[calc(100svh-4rem)] flex flex-col justify-end px-4 sm:px-8 pt-24 pb-24">
-      <h1 className="font-semibold tracking-tighter leading-[0.9] text-[clamp(2.75rem,12vw,11rem)] wrap-break-word break-keep">
+      <h1 className="font-semibold tracking-tighter leading-[0.9] text-[clamp(2.75rem,12vw,11rem)] [:lang(zh)_&]:text-[clamp(2.25rem,10vw,9rem)] wrap-break-word break-keep">
         <Line delay={0} reduced={reduced} className="text-mist-900">
           {t("hero.name.first")}
         </Line>
