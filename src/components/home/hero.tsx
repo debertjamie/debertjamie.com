@@ -4,6 +4,7 @@ import { useT } from "next-i18next/client";
 import { motion } from "framer-motion";
 import { ExtendedLink as Link } from "../commons/extendlink";
 import { ScrollHint } from "./scroll-hint";
+import { SeasonalBackdrop } from "../seasonal/backdrop";
 import usePrefersReducedMotion from "@/src/hooks/useReducedMotion";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -44,7 +45,8 @@ export function Hero() {
   } as const;
 
   return (
-    <section className="relative min-h-[calc(100svh-4rem)] flex flex-col justify-end px-4 sm:px-8 pt-24 pb-24">
+    <section className="relative isolate min-h-[calc(100svh-4rem)] flex flex-col justify-end px-4 sm:px-8 pt-24 pb-24">
+      <SeasonalBackdrop />
       <h1 className="font-semibold tracking-tighter leading-[0.9] text-[clamp(2.75rem,12vw,11rem)] [:lang(zh)_&]:text-[clamp(2.25rem,10vw,9rem)] wrap-break-word break-keep">
         <Line delay={0} reduced={reduced} className="text-mist-900">
           {t("hero.name.first")}
